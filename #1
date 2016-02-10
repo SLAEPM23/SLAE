@@ -1,0 +1,147 @@
+
+
+interface IVector:ICloneable
+{
+static IVector operator (IVector vec, double v);
+static IVector operator *(double vec, IVector v);
+static double operator *(IVector v1, IVector v2);
+static IVector operator +(IVector v1, IVector v2);
+IVector Add(IVector v2,double c);// v=v+cv2;
+double this[int i] { get; set; }
+double Norm { get; }
+int Size { get; }
+void Nullify();
+}
+
+interface IMatrix    
+{
+    public delegate void ProcessElement(int i, int j, double d);
+
+    void Run(ProcessElement processor);
+    IVector Diagonal { get; }
+    int Size { get; }
+}
+class Vector:IVector
+{
+    double[] v;
+
+    public Vector(double[] vec)
+    {
+        v = vec;
+    }
+    public IVector Add(IVector v2, double c)
+    {
+        throw new NotImplementedException();
+    }
+
+    public double this[int i]
+    {
+        get
+        {
+            return v[i];
+        }
+        set
+        {
+            v[i]=value;
+        }
+    }
+
+    public double Norm
+    {
+        get 
+        { 
+            double N=0;
+            for(int i=0;i<v.Length;i++)
+            {
+                N += v[i] * v[i];
+            }
+            return Math.Sqrt(N);
+        }
+    }
+
+    public int Size
+    {
+        get { return v.Length; }
+    }
+
+    public void Nullify()
+    {
+        for (int i = 0; i < v.Length; i++) v[i] = 0;
+    }
+    public object Clone()
+    {
+        return new Vector(v.Clone() as double[]);
+    }
+}
+
+class RowColumnSparseMatrix : IMatrix    
+{
+    int [] ia;
+    int[] ja;
+    Vector al;
+    Vector di;
+    int size;
+    RowColumnSparseMatrix(int sz,int [] _ia, int[] _ja,  
+        double[] _al, double[] _di)
+    {
+        size = sz;
+        ia = _ia; ja = _ja; al = new Vector(_al); di = new Vector(_di);
+    }
+
+    public void Run(IMatrix.ProcessElement processor)
+    {
+        for(int i=0;i<size;i++)
+        {
+            processor(i, i, di[i]);
+            for(int jaddr=ia[i];jaddr<ia[i+1];jaddr++)
+            {
+                processor(i, ja[jaddr], al[jaddr]);
+                processor(ja[jaddr], i, al[jaddr]);
+            }
+        }
+    }
+
+    public IVector Diagonal
+    {
+        get { return di; }
+    }
+
+    public int Size
+    {
+        get { return size; }
+    }
+}
+
+
+
+
+public static class MatrixAssistant
+{
+    public static IVector operator*(IMatrix matr,IVector vec)
+        {
+            IVector res = vec.Clone() as IVector;
+            res.Nullify();
+            matr.Run
+                (
+                (int i, int j, double el) => { res[j] += el * vec[j]; }
+                );
+            return res;
+        }
+}
+interface ISolver    
+{
+    IVector Solve(IMatrix matrix, IVector rp, double MinResidual =1e-20,int MaxIter=10000 );
+    double Residual { get; }
+    int Iter { get; }
+}
+interface IMatrixFactory
+{
+    IMatrix CreateMatrix(System.IO.StringReader file);
+    IMatrix CreateMatrix(System.IO.BinaryReader file);
+}
+
+interface ISolverFactory
+{
+    ISolver CreateSolver(string name,string precond);
+}
+
