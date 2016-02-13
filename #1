@@ -21,6 +21,7 @@ interface IMatrix
     IVector Diagonal { get; }
     int Size { get; }
 }
+//
 class Vector:IVector
 {
     double[] v;
