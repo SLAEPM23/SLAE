@@ -14,6 +14,7 @@ namespace slae
     {
         public Form1()
         {
+            ///
             InitializeComponent();
         }
     }
