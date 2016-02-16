@@ -14,6 +14,7 @@ namespace slae
         [STAThread]
         static void Main()
         {
+            Solver s;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

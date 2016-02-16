@@ -8,8 +8,8 @@ namespace slae.Interface
 {
     interface IMatrix
     {
-        delegate void ProcessElement(int i, int j, double d);
-        void Run(ProcessElement processor);
+//        delegate void ProcessElement(int i, int j, double d);
+//        void Run(ProcessElement processor);
         IVector Diagonal { get; }
         int Size { get; }
     }
