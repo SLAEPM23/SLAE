@@ -33,7 +33,7 @@ namespace slae
         }
         Interface.IVector Interface.ISolver.Solve(Interface.IMatrix matrix, Interface.IVector rp, double MinResidual, int MaxIter)
         {
-            return rp;
+            return MethodSolver(matrix, rp, MinResidual, MaxIter);
         }
 
         Interface.IVector LOS(Interface.IMatrix matrix, Interface.IVector rp, double MinResidual, int MaxIter)
