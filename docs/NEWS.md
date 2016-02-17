@@ -14,4 +14,4 @@
 
 5. Формат столбцовый (пока для одного, но желательно для трёх все делать внутри программы)
 
-[Назад](https://github.com/SLAEPM23/SLAE/README.md)
+[Назад](https://github.com/SLAEPM23/SLAE/blob/master/README.md)
