@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slae.Vector
+namespace slae
 {
-    class Vector
+    class Vector : Interface.IVector
     {
     }
 }

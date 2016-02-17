@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slae.Matrix
+namespace slae
 {
-    class Matrix
+    class Matrix: Interface.IMatrix
     {
     }
 }

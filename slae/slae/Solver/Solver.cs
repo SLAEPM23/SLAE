@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace slae
 {
-    class Solver : Interface.ISolver
+    namespace Interface
+    {
+    class Solver : ISolver
     {
         int    Iter;
         double Residual;
         Method MethodSolver;
-        delegate Interface.IVector Method(Interface.IMatrix matrix, Interface.IVector rp, double MinResidual, int MaxIter);
+        delegate IVector Method(IMatrix matrix, IVector rp, double MinResidual, int MaxIter);
 
         Solver(string algorithm)
         {
@@ -23,30 +25,32 @@ namespace slae
                 default: break;
             }
         }
-        int Interface.ISolver.Iter
+        int ISolver.Iter
         {
             get { return Iter; }
         }
-        double Interface.ISolver.Residual
+        double ISolver.Residual
         {
             get { return Residual; }
         }
-        Interface.IVector Interface.ISolver.Solve(Interface.IMatrix matrix, Interface.IVector rp, double MinResidual, int MaxIter)
+        IVector ISolver.Solve(IMatrix matrix, IVector rp, double MinResidual, int MaxIter)
         {
             return MethodSolver(matrix, rp, MinResidual, MaxIter);
         }
 
-        Interface.IVector LOS(Interface.IMatrix matrix, Interface.IVector rp, double MinResidual, int MaxIter)
+        IVector LOS(IMatrix matrix, IVector rp, double MinResidual, int MaxIter)
         {
             return rp;
         }
-        Interface.IVector LU(Interface.IMatrix matrix, Interface.IVector rp, double MinResidual, int MaxIter)
+        IVector LU(IMatrix matrix, IVector rp, double MinResidual, int MaxIter)
         {
             return rp;
         }
-        Interface.IVector Jacobi(Interface.IMatrix matrix, Interface.IVector rp, double MinResidual, int MaxIter)
+        IVector Jacobi(IMatrix matrix, IVector rp, double MinResidual, int MaxIter)
         {
+            IVector result = new Vector();
             return rp;
         }
+    }
     }
 }
