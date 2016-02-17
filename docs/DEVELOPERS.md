@@ -25,4 +25,4 @@
 **Ананьева Даша - DariyaA**
 Шестакова Алёна - AlenkaSh
 
-[Назад](https://github.com/SLAEPM23/SLAE/blob/master/README.md)
+[Назад](https://github.com/SLAEPM23/SLAE)
