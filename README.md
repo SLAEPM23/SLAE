@@ -21,6 +21,6 @@
 
 Полезное
 ==============================
-[Новости](https://github.com/SLAEPM23/SLAE/docs/NEWS.md)
+[Новости](https://github.com/SLAEPM23/SLAE/blob/master/docs/NEWS.md)
 
-[Разработчики](https://github.com/SLAEPM23/SLAE/docs/DEVELOPERS.md)
+[Разработчики](https://github.com/SLAEPM23/SLAE/blob/master/docs/DEVELOPERS.md)
