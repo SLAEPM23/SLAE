@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace slae.Interface
 {
-    interface IVector : ICloneable
+    public interface IVector : ICloneable
     {
         IVector multScalar(IVector vec, double v);
         IVector multScalar(double v, IVector vec);

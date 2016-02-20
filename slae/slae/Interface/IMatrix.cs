@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace slae.Interface
 {
-    delegate void ProcessElement(int i, int j, double d);
-    interface IMatrix
+    public delegate void ProcessElement(int i, int j, double d);
+    public interface IMatrix
     {
         void Run(ProcessElement processor);
         IVector Diagonal { get; }

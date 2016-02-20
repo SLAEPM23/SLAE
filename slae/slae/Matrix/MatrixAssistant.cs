@@ -8,7 +8,7 @@ namespace slae
 {
     public static class MatrixAssistant
     {
-        static Interface.IVector multMatrixVector(Interface.IMatrix matr, Interface.IVector vec)
+        public static Interface.IVector multMatrixVector(Interface.IMatrix matr, Interface.IVector vec)
         {
             Interface.IVector res = vec.Clone() as Interface.IVector;
             res.Nullify();
