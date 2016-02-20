@@ -8,10 +8,10 @@ namespace slae.Interface
 {
     interface IVector : ICloneable
     {
-        //static IVector operator (IVector vec, double v);
-//        static IVector operator *(double vec, IVector v);
-//        static double operator *(IVector v1, IVector v2);
-//        static IVector operator +(IVector v1, IVector v2);
+        IVector multScalar(IVector vec, double v);
+        IVector multScalar(double v, IVector vec);
+        double multVector(IVector v1, IVector v2);
+        IVector sumVector(IVector v1, IVector v2);
         IVector Add(IVector v2, double c);// v=v+cv2;
         double this[int i] { get; set; }
         double Norm { get; }

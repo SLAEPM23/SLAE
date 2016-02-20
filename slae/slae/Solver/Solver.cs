@@ -48,7 +48,7 @@ namespace slae
         }
         IVector Jacobi(IMatrix matrix, IVector rp, double MinResidual, int MaxIter)
         {
-            IVector result = new Vector();
+            IVector result = new Vector(); 
             return rp;
         }
     }
