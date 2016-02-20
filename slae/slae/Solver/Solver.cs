@@ -48,8 +48,31 @@ namespace slae
         }
         IVector Jacobi(IMatrix matrix, IVector rp, double MinResidual, int MaxIter)
         {
-            IVector result = new Vector(); 
-            return rp;
+            IVector result = new Vector(rp.Size);
+            double w = 1;//параметр релаксации
+            IVector difference = new Vector(rp.Size);//f-Ax
+            Iter = 0;
+            double Residual1, Residual2;
+            Residual1 = rp.Norm;
+            result.Nullify();
+            do
+            {
+                Iter++;
+                difference = (IVector)rp.Clone();
+                difference.Add(MatrixAssistant.multMatrixVector(matrix, result), -1);
+                for (int i = 0; i < rp.Size; i++)
+                {
+                    difference[i] = difference[i] / matrix.Diagonal[i];
+                }
+                result.Add(difference, w);
+                difference = (IVector)rp.Clone();
+                difference.Add(MatrixAssistant.multMatrixVector(matrix, result), -1);
+                Residual2 = difference.Norm;
+                Residual = Residual2 / Residual1;
+
+            } while (Iter <= MaxIter && Residual > MinResidual);
+
+            return result;
         }
     }
     }
