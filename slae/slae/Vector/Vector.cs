@@ -16,6 +16,7 @@ namespace slae
         }
         public Vector(int size)
         {
+            v = new double[size];
             for (int i = 0; i < size; i++)
             {
                 v[i] = 0;
@@ -61,9 +62,9 @@ namespace slae
         {
             for (int i = 0; i < v2.Size; i++)
             {
-                v2[i] = v2[i] + c;
+                v[i] += v2[i]*c;
             }
-            return v2;
+            return v;
         }
 
         public double this[int i]
@@ -103,6 +104,12 @@ namespace slae
         public object Clone()
         {
             return new Vector(v.Clone() as double[]);
+        }
+        public void Equalize(Interface.IVector v2)
+        {
+            for (int i=0; i<v2.Size; i++)
+                v[i] = v2[i];
+            return;
         }
     }
 }
