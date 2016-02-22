@@ -17,6 +17,7 @@ namespace slae.Interface
         double Norm { get; }
         int Size { get; }
         void Nullify();
+        void Equalize(Interface.IVector v2)
     }
 }
 
