@@ -55,11 +55,11 @@ namespace slae
             double Residual1, Residual2;
             Residual1 = rp.Norm;
             result.Nullify();
+	    difference = (IVector)rp.Clone();
+            difference.Add(MatrixAssistant.multMatrixVector(matrix, result), -1);
             do
             {
                 Iter++;
-                difference = (IVector)rp.Clone();
-                difference.Add(MatrixAssistant.multMatrixVector(matrix, result), -1);
                 for (int i = 0; i < rp.Size; i++)
                 {
                     difference[i] = difference[i] / matrix.Diagonal[i];
