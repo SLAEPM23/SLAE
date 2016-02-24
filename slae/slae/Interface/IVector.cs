@@ -12,7 +12,7 @@ namespace slae.Interface
         IVector multScalar(double v, IVector vec);
         double multVector(IVector v1, IVector v2);
         IVector sumVector(IVector v1, IVector v2);
-        IVector Add(IVector v2, double c);// v=v+cv2;
+        void Add(IVector v2, double c);// v=v+cv2;
         double this[int i] { get; set; }
         double Norm { get; }
         int Size { get; }

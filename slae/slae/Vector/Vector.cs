@@ -58,13 +58,12 @@ namespace slae
             }
             return result;
         }
-        public Interface.IVector Add(Interface.IVector v2, double c)// v=v+cv2;
+        public void Add(Interface.IVector v2, double c)// v=v+cv2;
         {
             for (int i = 0; i < v2.Size; i++)
             {
                 v[i] += v2[i]*c;
             }
-            return v;
         }
 
         public double this[int i]
@@ -109,7 +108,6 @@ namespace slae
         {
             for (int i=0; i<v2.Size; i++)
                 v[i] = v2[i];
-            return;
         }
     }
 }

@@ -55,7 +55,7 @@ namespace slae
             double Residual1, Residual2;
             Residual1 = rp.Norm;
             result.Nullify();
-	    difference = (IVector)rp.Clone();
+            difference.Equalize(rp);
             difference.Add(MatrixAssistant.multMatrixVector(matrix, result), -1);
             do
             {
@@ -65,7 +65,7 @@ namespace slae
                     difference[i] = difference[i] / matrix.Diagonal[i];
                 }
                 result.Add(difference, w);
-                difference = (IVector)rp.Clone();
+                difference.Equalize(rp);
                 difference.Add(MatrixAssistant.multMatrixVector(matrix, result), -1);
                 Residual2 = difference.Norm;
                 Residual = Residual2 / Residual1;
