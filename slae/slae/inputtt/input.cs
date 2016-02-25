@@ -1,28 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Text.RegularExpressions;
 
-namespace slae.inputtt
+namespace ConsoleApplication1
 {
-    class input
+    class Program
     {
-
         static void Main(string[] args)
         {
 
-            using (StreamReader f = new StreamReader("input.txt"))
+            using (System.IO.StreamReader file = new System.IO.StreamReader("input.txt"))
             {
+                var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t', ',' },
+                StringSplitOptions.RemoveEmptyEntries);
                 int n, m;
-                string s;
-                string[] sa;
-                s = f.ReadLine();
-                sa = s.Split(' ');
-                n = Convert.ToInt32(sa[0]);
-                m = Convert.ToInt32(sa[1]);
+                if (!int.TryParse(st[0], out n))
+                    throw new Exception("Bad file format");
+                n = int.Parse(st[0]);
+                m = int.Parse(st[1]);
 
                 int[] ia = new int[n + 1];
                 int[] ja = new int[m];
@@ -30,31 +28,21 @@ namespace slae.inputtt
                 double[] au = new double[m];
                 double[] d = new double[n];
 
-                s = f.ReadLine();
-                sa = s.Split(' ');
-                for (int i = 0; i < n + 1; i++)
-                    ia[i] = Convert.ToInt32(sa[i]);
 
-                s = f.ReadLine();
-                sa = s.Split(' ');
-                for (int i = 0; i < m; i++)
-                    ja[i] = Convert.ToInt32(sa[i]);
+                for (int i = 2; i < n + 3; i++)
+                    ia[i - 2] = int.Parse(st[i]);
 
-                s = f.ReadLine();
-                sa = s.Split(' ');
-                for (int i = 0; i < m; i++)
-                    al[i] = Convert.ToInt32(sa[i]);
+                for (int i = n + 3; i < n + 3 + m; i++)
+                    ja[i - n - 3] = int.Parse(st[i]);
 
-                s = f.ReadLine();
-                sa = s.Split(' ');
-                for (int i = 0; i < m; i++)
-                    au[i] = Convert.ToInt32(sa[i]);
+                for (int i = n + 3 + m; i < n + 3 + 2*m; i++)
+                    al[i - n - 3 - m] = int.Parse(st[i]);
 
-                s = f.ReadLine();
-                sa = s.Split(' ');
-                for (int i = 0; i < n; i++)
-                    d[i] = Convert.ToInt32(sa[i]);
+                for (int i = n + 3 + 2*m; i < n + 3 + 3*m; i++)
+                    au[i - n - 3 - 2*m] = int.Parse(st[i]);
 
+                for (int i = n + 3 + 3 * m; i < 2*n + 3 + 3 * m; i++)
+                    d[i - n - 3 - 3 * m] = int.Parse(st[i]);
 
             }
         }
