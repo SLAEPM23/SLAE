@@ -1,18 +1,17 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace slae.Input
 {
-    class Program
+    class input
     {
-        static void Main(string[] args)
+        string path;
+        public void ReadFromFile(out RowColumnSparseMatrix Matrix, out Vector Vec)
         {
-
-            using (System.IO.StreamReader file = new System.IO.StreamReader("input.txt"))
+            using (System.IO.StreamReader file = new System.IO.StreamReader(path))
             {
                 var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t', ',' },
                 StringSplitOptions.RemoveEmptyEntries);
@@ -25,8 +24,9 @@ namespace ConsoleApplication1
                 int[] ia = new int[n + 1];
                 int[] ja = new int[m];
                 double[] al = new double[m];
-                double[] au = new double[m];
+                //double[] au = new double[m];
                 double[] d = new double[n];
+                double[] rp = new double[n];
 
 
                 for (int i = 2; i < n + 3; i++)
@@ -35,16 +35,24 @@ namespace ConsoleApplication1
                 for (int i = n + 3; i < n + 3 + m; i++)
                     ja[i - n - 3] = int.Parse(st[i]);
 
-                for (int i = n + 3 + m; i < n + 3 + 2*m; i++)
+                for (int i = n + 3 + m; i < n + 3 + 2 * m; i++)
                     al[i - n - 3 - m] = int.Parse(st[i]);
 
-                for (int i = n + 3 + 2*m; i < n + 3 + 3*m; i++)
-                    au[i - n - 3 - 2*m] = int.Parse(st[i]);
+                
+                //тут нужно правильно вбить параметры в цикле для считки d и rp!!!
+                for (int i = n + 3 + 2 * m; i < n + 3 + 3 * m; i++)
+                    d[i - n - 3 - 2 * m] = int.Parse(st[i]);
 
-                for (int i = n + 3 + 3 * m; i < 2*n + 3 + 3 * m; i++)
-                    d[i - n - 3 - 3 * m] = int.Parse(st[i]);
-
+                for (int i = n + 3 + 3 * m; i < 2 * n + 3 + 3 * m; i++)
+                    rp[i - n - 3 - 3 * m] = int.Parse(st[i]);
+                
+                Matrix = new RowColumnSparseMatrix(n, ia, ja, al, d);
+                Vec = new Vector(rp);
             }
+        }
+        public input(string file)
+        {
+            path = file;
         }
     }
 }

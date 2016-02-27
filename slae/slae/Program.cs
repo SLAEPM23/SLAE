@@ -23,7 +23,7 @@ namespace slae
             RowColumnSparseMatrix Matrix;
             Vector Rp;
 
-            Input_new.input Inp = new Input_new.input(Forma.textBox1.Text);
+            Input.input Inp = new Input.input(Forma.textBox1.Text);
             Inp.ReadFromFile(out Matrix, out Rp);
         }
     }
