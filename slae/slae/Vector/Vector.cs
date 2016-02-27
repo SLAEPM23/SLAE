@@ -23,41 +23,6 @@ namespace slae
             }
         }
 
-        public Interface.IVector multScalar(Interface.IVector vec, double v)
-        {
-            for (int i = 0; i < vec.Size; i++)
-            {
-                vec[i] *= v;
-            }
-            return vec;
-        }
-        public Interface.IVector multScalar(double v, Interface.IVector vec)
-        {
-            for (int i = 0; i < vec.Size; i++)
-            {
-                vec[i] *= v;
-            }
-            return vec;
-        }
-        public double multVector(Interface.IVector v1, Interface.IVector v2)
-        {
-            double result = 0;
-            for (int i = 0; i < v1.Size; i++) 
-            {
-                result += v1[i] * v2[i];
-            }
-            return result;
-        }
-        public Interface.IVector sumVector(Interface.IVector v1, Interface.IVector v2)
-        {
-            Interface.IVector result = v1.Clone() as Interface.IVector;
-            result.Nullify();
-            for (int i = 0; i < v1.Size; i++)
-            {
-                result[i] = v1[i] + v2[i];
-            }
-            return result;
-        }
         public void Add(Interface.IVector v2, double c)// v=v+cv2;
         {
             for (int i = 0; i < v2.Size; i++)
