@@ -8,8 +8,10 @@ namespace slae.Interface
 {
     interface ISolver
     {
-        IVector Solve(IMatrix matrix, IVector rp, double MinResidual = 1e-20, int MaxIter = 10000);
-        double Residual { get; }
-        int Iter { get; }
+        IVector Solve(IMatrix A, IVector b, IVector x0);
+        double residual { get; }
+        double minResidual { get; set; }
+        int iteration { get; }
+        int maxIteration { get; set; }
     }
 }
