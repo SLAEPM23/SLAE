@@ -13,12 +13,13 @@ namespace slae
         double betta;
         ConjugateGradient()
         {
-
+            residual = 2 * minResidual;
         }
         ConjugateGradient(int _maxIteration, double _minResidual)
         {
             maxIteration = _maxIteration;
             minResidual = _minResidual;
+            residual = 2 * minResidual;
         }
 
         public override IVector Solve(IMatrix A, IVector b, IVector x0)
