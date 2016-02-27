@@ -13,7 +13,7 @@ namespace slae
         Vector al;
         Vector di;
         int size;
-        RowColumnSparseMatrix(int sz, int[] _ia, int[] _ja,
+        public RowColumnSparseMatrix(int sz, int[] _ia, int[] _ja,
             double[] _al, double[] _di)
         {
             size = sz;
