@@ -64,7 +64,6 @@
     <Compile Include="Solver\Jacobi.cs" />
     <Compile Include="Solver\Solver.cs" />
     <Compile Include="Vector\Vector.cs" />
-    <Compile Include="Vector\VectorAssistant.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
