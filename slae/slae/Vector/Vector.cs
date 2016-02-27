@@ -54,7 +54,7 @@ namespace slae
             result.Nullify();
             for (int i = 0; i < v1.Size; i++)
             {
-                result[i] = v1[i] * v2[i];
+                result[i] = v1[i] + v2[i];
             }
             return result;
         }
