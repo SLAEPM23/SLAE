@@ -15,11 +15,13 @@
 
 Алгоритмы:
 
-1.	LOS
+1.	Jacobi
 
-2.	Jacobi
+2.	ConjugateGradient
 
-3.	LU
+3.	LOS
+
+4.	LU
 
 Предобуславливание матриц:
 
