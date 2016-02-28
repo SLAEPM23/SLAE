@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using slae.Interface;
 
 namespace slae
 {
@@ -41,6 +42,47 @@ namespace slae
         public int Size
         {
             get { return size; }
+        }
+    }
+
+
+    class DenseMatrix : Interface.IMatrix
+    {
+        double[,] a;
+        int size;
+        Vector di;
+        public DenseMatrix(int sz, double[,] _a)
+        {
+            size = sz;
+            a = new double[size, size];
+            a = _a;
+            di = new Vector(size);
+            for (int i=0; i< size; i++)
+            {
+                di[i] = a[i, i];
+            }
+        }
+        public IVector Diagonal
+        {
+            get
+            {
+                return di;
+            }
+        }
+
+        public int Size
+        {
+            get
+            {
+                return size;
+            }
+        }
+
+        public void Run(ProcessElement processor)
+        {
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
+                    processor(i, j, a[i, j]);
         }
     }
 }
