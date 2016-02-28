@@ -12,13 +12,15 @@ namespace slae
         int[] ia;
         int[] ja;
         Vector al;
+        Vector au;
         Vector di;
         int size;
         public RowColumnSparseMatrix(int sz, int[] _ia, int[] _ja,
-            double[] _al, double[] _di)
+            double[] _al, double[] _au, double[] _di)
         {
             size = sz;
             ia = _ia; ja = _ja; al = new Vector(_al); di = new Vector(_di);
+            au = new Vector(_au);
         }
 
         public void Run(Interface.ProcessElement processor)
@@ -28,7 +30,8 @@ namespace slae
                 processor(i, i, di[i]);
                 for (int jaddr = ia[i]; jaddr < ia[i + 1]; jaddr++)
                 {
-                    processor(i, ja[jaddr], al[jaddr]);
+                    // processor(i, ja[jaddr], al[jaddr]);
+                    processor(i, ja[jaddr], au[jaddr]);
                     processor(ja[jaddr], i, al[jaddr]);
                 }
             }
@@ -44,6 +47,7 @@ namespace slae
             get { return size; }
         }
     }
+
 
 
     class DenseMatrix : Interface.IMatrix
