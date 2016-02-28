@@ -25,7 +25,7 @@ namespace slae.Input
                 int[] ia = new int[n + 1];
                 int[] ja = new int[m];
                 double[] al = new double[m];
-                //double[] au = new double[m];
+                double[] au = new double[m];
                 double[] d = new double[n];
                 double[] rightPart = new double[n];
                 long offset = 2;
@@ -39,13 +39,16 @@ namespace slae.Input
                 for (int i = 0; i < m; i++,offset++)
                     al[i] = int.Parse(st[offset]);
 
+                for (int i = 0; i < m; i++, offset++)
+                    au[i] = int.Parse(st[offset]);
+
                 for (int i = 0; i < n; i++,offset++)
                     d[i] = int.Parse(st[offset]);
 
                 for (int i = 0; i <  n; i++,offset++)
                     rightPart[i] = int.Parse(st[offset]);
                 
-                A = new RowColumnSparseMatrix(n, ia, ja, al, d);
+                A = new RowColumnSparseMatrix(n, ia, ja, al, au, d);
                 b = new Vector(rightPart);
             }
         }

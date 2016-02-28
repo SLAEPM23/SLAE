@@ -14,16 +14,19 @@ namespace slae
         [STAThread]
         static void Main()
         {
-            //Solver s;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 Forma = new Form1();
-            Application.Run(new Form1());
+            Application.Run(Forma);
+
+            string MethodKeeping = Forma.meth_keep;//метод хранения
+            string MethodSolving = Forma.meth_solv;//метод решения
+            string Path = Forma.path;//файл с исходными данными
 
             RowColumnSparseMatrix Matrix;
             Vector Rp;
 
-            Input.input Inp = new Input.input(Forma.textBox1.Text);
+            Input.input Inp = new Input.input(Path);
             Inp.ReadFromFile(out Matrix, out Rp);
         }
     }
