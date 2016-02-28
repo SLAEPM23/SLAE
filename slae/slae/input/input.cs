@@ -9,8 +9,9 @@ namespace slae.Input
     class input
     {
         string path;
-        public void ReadFromFile(out RowColumnSparseMatrix Matrix, out Vector Vec)
+        public void ReadFromFile(out RowColumnSparseMatrix A, out Vector b)
         {
+//          Не хватает проверки path
             using (System.IO.StreamReader file = new System.IO.StreamReader(path))
             {
                 var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t', ',' },
@@ -26,28 +27,26 @@ namespace slae.Input
                 double[] al = new double[m];
                 //double[] au = new double[m];
                 double[] d = new double[n];
-                double[] rp = new double[n];
+                double[] rightPart = new double[n];
+                long offset = 2;
 
+                for (int i = 0; i < n + 1; i++, offset++)
+                    ia[i] = int.Parse(st[offset]);
 
-                for (int i = 2; i < n + 3; i++)
-                    ia[i - 2] = int.Parse(st[i]);
+                for (int i = 0; i < m; i++, offset++)
+                    ja[i] = int.Parse(st[offset]);
 
-                for (int i = n + 3; i < n + 3 + m; i++)
-                    ja[i - n - 3] = int.Parse(st[i]);
+                for (int i = 0; i < m; i++,offset++)
+                    al[i] = int.Parse(st[offset]);
 
-                for (int i = n + 3 + m; i < n + 3 + 2 * m; i++)
-                    al[i - n - 3 - m] = int.Parse(st[i]);
+                for (int i = 0; i < n; i++,offset++)
+                    d[i] = int.Parse(st[offset]);
 
+                for (int i = 0; i <  n; i++,offset++)
+                    rightPart[i] = int.Parse(st[offset]);
                 
-                //тут нужно правильно вбить параметры в цикле для считки d и rp!!!
-                for (int i = n + 3 + 2 * m; i < n + 3 + 3 * m; i++)
-                    d[i - n - 3 - 2 * m] = int.Parse(st[i]);
-
-                for (int i = n + 3 + 3 * m; i < 2 * n + 3 + 3 * m; i++)
-                    rp[i - n - 3 - 3 * m] = int.Parse(st[i]);
-                
-                Matrix = new RowColumnSparseMatrix(n, ia, ja, al, d);
-                Vec = new Vector(rp);
+                A = new RowColumnSparseMatrix(n, ia, ja, al, d);
+                b = new Vector(rightPart);
             }
         }
         public input(string file)
