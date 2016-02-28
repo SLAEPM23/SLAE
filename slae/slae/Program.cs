@@ -17,7 +17,14 @@ namespace slae
             //Solver s;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Form1 Forma = new Form1();
             Application.Run(new Form1());
+
+            RowColumnSparseMatrix Matrix;
+            Vector Rp;
+
+            Input.input Inp = new Input.input(Forma.textBox1.Text);
+            Inp.ReadFromFile(out Matrix, out Rp);
         }
     }
 }

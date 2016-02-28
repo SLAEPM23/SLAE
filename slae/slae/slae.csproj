@@ -50,6 +50,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Input\input.cs" />
     <Compile Include="Interface\IMatrix.cs" />
     <Compile Include="Interface\ISolver.cs" />
     <Compile Include="Interface\IVector.cs" />

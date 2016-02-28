@@ -13,12 +13,13 @@ namespace slae
         double betta;
         ConjugateGradient()
         {
-
+            residual = 2 * minResidual;
         }
         ConjugateGradient(int _maxIteration, double _minResidual)
         {
             maxIteration = _maxIteration;
             minResidual = _minResidual;
+            residual = 2 * minResidual;
         }
 
         public override IVector Solve(IMatrix A, IVector b, IVector x0)
@@ -34,17 +35,16 @@ namespace slae
             z.Equalize(r);
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++ )
             {
-                alpha = tmp.multVector(r, r);
-                alpha /= tmp.multVector(z, z);
+                alpha = VectorAssistant.multVector(r, r) / VectorAssistant.multVector(z, z);
                 x.Add(z,alpha);
                 tmp.Equalize(r);
                 tmp.Add(z, -alpha);
-                betta = tmp.multVector(tmp, tmp);
-                betta /= tmp.multVector(r, r);
+                betta = VectorAssistant.multVector(tmp, tmp) / VectorAssistant.multVector(r, r);
                 r.Equalize(tmp);
                 tmp.Equalize(r);
                 tmp.Add(z,betta);
                 z.Equalize(tmp);
+                residual = r.Norm / b.Norm;
             }
             return x;
         }

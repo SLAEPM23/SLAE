@@ -1,18 +1,18 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace slae.Input
 {
-    class Program
+    class input
     {
-        static void Main(string[] args)
+        string path;
+        public void ReadFromFile(out RowColumnSparseMatrix A, out Vector b)
         {
-
-            using (System.IO.StreamReader file = new System.IO.StreamReader("input.txt"))
+//          Не хватает проверки path
+            using (System.IO.StreamReader file = new System.IO.StreamReader(path))
             {
                 var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t', ',' },
                 StringSplitOptions.RemoveEmptyEntries);
@@ -25,26 +25,33 @@ namespace ConsoleApplication1
                 int[] ia = new int[n + 1];
                 int[] ja = new int[m];
                 double[] al = new double[m];
-                double[] au = new double[m];
+                //double[] au = new double[m];
                 double[] d = new double[n];
+                double[] rightPart = new double[n];
+                long offset = 2;
 
+                for (int i = 0; i < n + 1; i++, offset++)
+                    ia[i] = int.Parse(st[offset]);
 
-                for (int i = 2; i < n + 3; i++)
-                    ia[i - 2] = int.Parse(st[i]);
+                for (int i = 0; i < m; i++, offset++)
+                    ja[i] = int.Parse(st[offset]);
 
-                for (int i = n + 3; i < n + 3 + m; i++)
-                    ja[i - n - 3] = int.Parse(st[i]);
+                for (int i = 0; i < m; i++,offset++)
+                    al[i] = int.Parse(st[offset]);
 
-                for (int i = n + 3 + m; i < n + 3 + 2*m; i++)
-                    al[i - n - 3 - m] = int.Parse(st[i]);
+                for (int i = 0; i < n; i++,offset++)
+                    d[i] = int.Parse(st[offset]);
 
-                for (int i = n + 3 + 2*m; i < n + 3 + 3*m; i++)
-                    au[i - n - 3 - 2*m] = int.Parse(st[i]);
-
-                for (int i = n + 3 + 3 * m; i < 2*n + 3 + 3 * m; i++)
-                    d[i - n - 3 - 3 * m] = int.Parse(st[i]);
-
+                for (int i = 0; i <  n; i++,offset++)
+                    rightPart[i] = int.Parse(st[offset]);
+                
+                A = new RowColumnSparseMatrix(n, ia, ja, al, d);
+                b = new Vector(rightPart);
             }
+        }
+        public input(string file)
+        {
+            path = file;
         }
     }
 }
