@@ -35,6 +35,11 @@ namespace slae
 
                 Jacobi Solving = new Jacobi();
                 Vector solution = (Vector)Solving.Solve(Matrix, Rp, x0);
+
+                string resultic = string.Empty;
+                for (int i = 0; i < solution.Size; i++)
+                    resultic += Convert.ToString(solution[i]) + "\n";
+                MessageBox.Show(resultic);
             }
             catch (Exception e)
             {
