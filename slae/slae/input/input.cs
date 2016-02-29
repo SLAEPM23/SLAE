@@ -9,7 +9,7 @@ namespace slae.Input
     class input
     {
         string path;
-        public void ReadFromFile(out RowColumnSparseMatrix A, out Vector b)
+        public void ReadFromFile(out RowColumnSparseMatrix A, out Vector b, out Vector x_init)
         {
 //          Не хватает проверки path
             using (System.IO.StreamReader file = new System.IO.StreamReader(path))
@@ -28,6 +28,7 @@ namespace slae.Input
                 double[] au = new double[m];
                 double[] d = new double[n];
                 double[] rightPart = new double[n];
+                double[] x0 = new double[n];
                 long offset = 2;
 
                 for (int i = 0; i < n + 1; i++, offset++)
@@ -47,9 +48,13 @@ namespace slae.Input
 
                 for (int i = 0; i <  n; i++,offset++)
                     rightPart[i] = int.Parse(st[offset]);
+
+                for (int i = 0; i < n; i++, offset++)
+                    x0[i] = int.Parse(st[offset]);
                 
                 A = new RowColumnSparseMatrix(n, ia, ja, al, au, d);
                 b = new Vector(rightPart);
+                x_init = new Vector(x0);
             }
         }
         public input(string file)

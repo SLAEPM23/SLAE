@@ -25,9 +25,14 @@ namespace slae
 
             RowColumnSparseMatrix Matrix;
             Vector Rp;
+            Vector x0;
 
             Input.input Inp = new Input.input(Path);
-            Inp.ReadFromFile(out Matrix, out Rp);
+            Inp.ReadFromFile(out Matrix, out Rp, out x0);
+
+            
+            Jacobi Solving = new Jacobi();
+            Vector solution = (Vector)Solving.Solve(Matrix, Rp, x0);
         }
     }
 }

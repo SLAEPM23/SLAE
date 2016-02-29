@@ -14,14 +14,14 @@ namespace slae
             get { return relaxation; }
             set { relaxation = value; } 
         }
-        Jacobi()
+        public Jacobi()
         {
             relaxation = 1;
             maxIteration = 1000;
             minResidual = 10e-4;
             residual = 2*minResidual;
         }
-        Jacobi(double _relaxation, int _maxIteration, double _minResidual)
+        public Jacobi(double _relaxation, int _maxIteration, double _minResidual)
         {
             relaxation = _relaxation;
             maxIteration = _maxIteration;
@@ -35,7 +35,7 @@ namespace slae
             IVector difference = new Vector(b.Size);//f-Ax
             double residual1, residual2;
             residual1 = b.Norm;
-            result.Nullify();
+            result.Equalize(x0);
             difference.Equalize(b);
             difference.Add(MatrixAssistant.multMatrixVector(A, result), -1);
 
