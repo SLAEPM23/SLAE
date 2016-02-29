@@ -33,24 +33,31 @@ namespace slae.Input
 
                 for (int i = 0; i < n + 1; i++, offset++)
                     ia[i] = int.Parse(st[offset]);
-
                 for (int i = 0; i < m; i++, offset++)
                     ja[i] = int.Parse(st[offset]);
+                if (ia[0] != 0)
+                {
+                    for (int i = 0; i < n + 1; i++)
+                        ia[i]--;
+                        
+                    for (int i = 0; i < m; i++)
+                        ja[i]--;
+                }
 
                 for (int i = 0; i < m; i++,offset++)
-                    al[i] = int.Parse(st[offset]);
+                    al[i] = double.Parse(st[offset]);
 
                 for (int i = 0; i < m; i++, offset++)
-                    au[i] = int.Parse(st[offset]);
+                    au[i] = double.Parse(st[offset]);
 
                 for (int i = 0; i < n; i++,offset++)
-                    d[i] = int.Parse(st[offset]);
+                    d[i] = double.Parse(st[offset]);
 
                 for (int i = 0; i <  n; i++,offset++)
-                    rightPart[i] = int.Parse(st[offset]);
+                    rightPart[i] = double.Parse(st[offset]);
 
                 for (int i = 0; i < n; i++, offset++)
-                    x0[i] = int.Parse(st[offset]);
+                    x0[i] = double.Parse(st[offset]);
                 
                 A = new RowColumnSparseMatrix(n, ia, ja, al, au, d);
                 b = new Vector(rightPart);
