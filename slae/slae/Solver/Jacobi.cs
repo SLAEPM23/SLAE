@@ -11,8 +11,8 @@ namespace slae
     {
         private double relaxation
         {
-            get { return relaxation; }
-            set { relaxation = value; } 
+            get;
+            set;
         }
         public Jacobi()
         {

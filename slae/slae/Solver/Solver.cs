@@ -11,23 +11,23 @@ namespace slae
     {
         public int maxIteration
         {
-            set { maxIteration = value; }
-            get { return maxIteration; }
+            set;
+            get;
         }
         public double minResidual
         {
-            set { minResidual = value; }
-            get { return minResidual; }
+            set;
+            get;
         }
         public int iteration
         {
-            get { return iteration; }
-            protected set { iteration = value; }
+            get;
+            protected set;
         }
         public double residual
         {
-            get { return residual; }
-            protected set { residual = value; }
+            get;
+            protected set;
         }
         public abstract IVector Solve(IMatrix A, IVector b, IVector x0);
     }
