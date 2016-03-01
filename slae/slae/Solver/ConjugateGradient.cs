@@ -13,7 +13,10 @@ namespace slae
         double betta;
         ConjugateGradient()
         {
+            maxIteration = 1000;
+            minResidual = 1E-4;
             residual = 2 * minResidual;
+            EPS_NULL = 1E-8;
         }
         ConjugateGradient(int _maxIteration, double _minResidual)
         {
@@ -35,15 +38,21 @@ namespace slae
             z.Equalize(r);
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++ )
             {
+                if (Math.Abs(VectorAssistant.multVector(z, z)) < EPS_NULL)
+                    throw new Exception("Devide by NULL in CG_solver:alpha");
                 alpha = VectorAssistant.multVector(r, r) / VectorAssistant.multVector(z, z);
                 x.Add(z,alpha);
                 tmp.Equalize(r);
                 tmp.Add(z, -alpha);
+                if (Math.Abs(VectorAssistant.multVector(r, r)) < EPS_NULL)
+                    throw new Exception("Devide by NULL in CG_solver:betta");
                 betta = VectorAssistant.multVector(tmp, tmp) / VectorAssistant.multVector(r, r);
                 r.Equalize(tmp);
                 tmp.Equalize(r);
                 tmp.Add(z,betta);
                 z.Equalize(tmp);
+                if (Math.Abs(b.Norm) < EPS_NULL)
+                    throw new Exception("Devide by NULL in CG_solver:Norm");
                 residual = r.Norm / b.Norm;
             }
             return x;

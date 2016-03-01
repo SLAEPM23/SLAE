@@ -9,17 +9,14 @@ namespace slae
 {
     class Jacobi : Solver
     {
-        private double relaxation
-        {
-            get;
-            set;
-        }
+        private double relaxation { get; set; }
         public Jacobi()
         {
             relaxation = 1;
             maxIteration = 1000;
-            minResidual = 10e-4;
+            minResidual = 1E-4;
             residual = 2*minResidual;
+            EPS_NULL = 1E-8;
         }
         public Jacobi(double _relaxation, int _maxIteration, double _minResidual)
         {
@@ -38,7 +35,11 @@ namespace slae
             result.Equalize(x0);
             difference.Equalize(b);
             difference.Add(MatrixAssistant.multMatrixVector(A, result), -1);
-
+    
+            for (int i = 0; i < b.Size; i++)
+                if (Math.Abs(A.Diagonal[i]) < EPS_NULL)
+                    throw new Exception("Devide by NULL in Jacobi_solver: diagonal");
+    
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++)
             {
                 for (int i = 0; i < b.Size; i++)
@@ -49,6 +50,8 @@ namespace slae
                 difference.Equalize(b);
                 difference.Add(MatrixAssistant.multMatrixVector(A, result), -1);
                 residual2 = difference.Norm;
+                if (Math.Abs(residual1) < EPS_NULL)
+                    throw new Exception("Devide by NULL in Jacobi_solver: residual1");
                 residual = residual2 / residual1;
 
             }

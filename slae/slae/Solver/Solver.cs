@@ -9,26 +9,11 @@ namespace slae
 {
     abstract class Solver : ISolver
     {
-        public int maxIteration
-        {
-            set;
-            get;
-        }
-        public double minResidual
-        {
-            set;
-            get;
-        }
-        public int iteration
-        {
-            get;
-            protected set;
-        }
-        public double residual
-        {
-            get;
-            protected set;
-        }
+        public int maxIteration   { get; set; }
+        public double minResidual { get; set; }
+        public int iteration      { get; protected set; }
+        public double residual    { get; protected set; }
+        protected double EPS_NULL   { get; set; }
         public abstract IVector Solve(IMatrix A, IVector b, IVector x0);
     }
 }
