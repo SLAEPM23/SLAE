@@ -31,8 +31,8 @@ namespace slae
                 for (int jaddr = ia[i]; jaddr < ia[i + 1]; jaddr++)
                 {
                     // processor(i, ja[jaddr], al[jaddr]);
-                    processor(i, ja[jaddr], au[jaddr]);
-                    processor(ja[jaddr], i, al[jaddr]);
+                    processor(i, ja[jaddr], al[jaddr]);
+                    processor(ja[jaddr], i, au[jaddr]);
                 }
             }
         }
