@@ -39,7 +39,9 @@ namespace slae
                 string resultic = string.Empty;
                 for (int i = 0; i < solution.Size; i++)
                     resultic += Convert.ToString(solution[i]) + "\n";
-                MessageBox.Show(resultic);
+                MessageBox.Show(resultic, "вектор решения");
+                MessageBox.Show(Convert.ToString( Solving.iteration), "итерация");
+                MessageBox.Show(Convert.ToString(Solving.residual), "невязка");
             }
             catch (Exception e)
             {
