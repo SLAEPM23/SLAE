@@ -38,7 +38,7 @@ namespace slae
     
             for (int i = 0; i < b.Size; i++)
                 if (Math.Abs(A.Diagonal[i]) < EPS_NULL)
-                    throw new Exception("Devide by NULL in Jacobi_solver: diagonal");
+                    throw new Exception("Divide by NULL in Jacobi_solver: diagonal");
     
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++)
             {
@@ -51,7 +51,7 @@ namespace slae
                 difference.Add(MatrixAssistant.multMatrixVector(A, result), -1);
                 residual2 = difference.Norm;
                 if (Math.Abs(residual1) < EPS_NULL)
-                    throw new Exception("Devide by NULL in Jacobi_solver: residual1");
+                    throw new Exception("Divide by NULL in Jacobi_solver: residual1");
                 residual = residual2 / residual1;
 
             }

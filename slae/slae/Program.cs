@@ -23,25 +23,24 @@ namespace slae
 
                 string MethodKeeping = Forma.meth_keep;//метод хранения
                 string MethodSolving = Forma.meth_solv;//метод решения
-                string Path = Forma.path;//файл с исходными данными
+                string path = Forma.path;//файл с исходными данными
 
-                RowColumnSparseMatrix Matrix;
-                Vector Rp;
+                RowColumnSparseMatrix A;
+                Vector b;
                 Vector x0;
 
-                Input.input Inp = new Input.input(Path);
-                Inp.ReadFromFile(out Matrix, out Rp, out x0);
+                Input.input Inp = new Input.input(path);
+                Inp.ReadFromFile(out A, out b, out x0);
 
+                Solver solver = new Jacobi();
+                Vector solution = (Vector)solver.Solve(A, b, x0);
 
-                Jacobi Solving = new Jacobi();
-                Vector solution = (Vector)Solving.Solve(Matrix, Rp, x0);
-
-                string resultic = string.Empty;
+                string result = string.Empty;
                 for (int i = 0; i < solution.Size; i++)
-                    resultic += Convert.ToString(solution[i]) + "\n";
-                MessageBox.Show(resultic, "вектор решения");
-                MessageBox.Show(Convert.ToString( Solving.iteration), "итерация");
-                MessageBox.Show(Convert.ToString(Solving.residual), "невязка");
+                    result += Convert.ToString(solution[i]) + "\n";
+                MessageBox.Show(result, "вектор решения");
+                MessageBox.Show(Convert.ToString(solver.iteration), "итерация");
+                MessageBox.Show(Convert.ToString(solver.residual), "невязка");
             }
             catch (Exception e)
             {
