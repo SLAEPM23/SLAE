@@ -28,11 +28,11 @@ namespace slae
             for (int i = 0; i < size; i++)
             {
                 processor(i, i, di[i]);
-                for (int jaddr = ia[i]; jaddr < ia[i + 1]; jaddr++)
+                for (int jaddr = ia[i] - 1; jaddr < ia[i + 1] - 1; jaddr++)
                 {
                     // processor(i, ja[jaddr], al[jaddr]);
-                    processor(i, ja[jaddr], al[jaddr]);
-                    processor(ja[jaddr], i, au[jaddr]);
+                    processor(i, ja[jaddr] -1, al[jaddr]);
+                    processor(ja[jaddr] - 1, i, au[jaddr]);
                 }
             }
         }
