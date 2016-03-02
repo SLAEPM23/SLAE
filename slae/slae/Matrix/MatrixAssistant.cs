@@ -14,7 +14,7 @@ namespace slae
             res.Nullify();
             matr.Run
                 (
-                (int i, int j, double el) => { res[j] += el * vec[j]; }
+                (int i, int j, double el) => { res[i] += el * vec[j]; }
                 );
             return res;
         }
