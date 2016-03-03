@@ -28,14 +28,14 @@ namespace slae
         {
             OpenFileDialog path = new OpenFileDialog();
             if (path.ShowDialog() == DialogResult.OK)
-                this.textBox1.Text = path.FileName;
+                this.fileName.Text = path.FileName;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            meth_keep = comboBox2.Text;
-            meth_solv = comboBox1.Text;
-            path = textBox1.Text;
+            meth_keep = matrixFormat.Text;
+            meth_solv = methodSolver.Text;
+            path = fileName.Text;
 
             RowColumnSparseMatrix A;
             Vector b;
@@ -43,8 +43,19 @@ namespace slae
 
             Input.input Inp = new Input.input(path);
             Inp.ReadFromFile(out A, out b, out x0);
-
-            Solver solver = new Jacobi();
+            Solver solver;
+            switch(this.methodSolver.SelectedItem.ToString())
+            {
+                case "Якоби":
+                    solver = new Jacobi();
+                    break;
+                case "МСГ":
+                    solver = new ConjugateGradient();
+                    break;
+                default:
+                    throw new Exception("Метод не выбран");
+            }
+             
             Vector solution = (Vector)solver.Solve(A, b, x0);
 
             string result = string.Empty;
@@ -60,7 +71,12 @@ namespace slae
 
         private void Form1_Load(object sender, EventArgs e)
         {
+           
+        }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
