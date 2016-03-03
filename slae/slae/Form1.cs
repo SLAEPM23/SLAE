@@ -66,7 +66,6 @@ namespace slae
             MessageBox.Show(Convert.ToString(solver.iteration), "итерация");
             MessageBox.Show(Convert.ToString(solver.residual), "невязка");
 
-            this.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -13,8 +13,8 @@ namespace slae
         public Jacobi()
         {
             relaxation = 1;
-            maxIteration = 1000;
-            minResidual = 1E-4;
+            maxIteration = 100000;
+            minResidual = 1E-16;
             residual = 2*minResidual;
             EPS_NULL = 1E-8;
         }
