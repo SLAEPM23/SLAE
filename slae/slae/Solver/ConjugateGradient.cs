@@ -31,35 +31,33 @@ namespace slae
             IVector x = new Vector(b.Size);
             IVector r = new Vector(b.Size);
             IVector z = new Vector(b.Size);
-            IVector tmp = new Vector(b.Size);
 //          Check errors
-            double scalar_mult;
+            double z_scalar_mult, r_scalar_mult;
             double norm;
+
+            norm = b.Norm;
+            if (norm < EPS_NULL)
+            {
+                x.Nullify();
+                return x;
+            }
 
             x.Equalize(x0);
             r.Equalize(b);
             r.Add(MatrixAssistant.multMatrixVector(A,x),-1);
             z.Equalize(r);
+
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++ )
             {
-                scalar_mult = VectorAssistant.multVector(z, z);
-                if (Math.Abs(scalar_mult) < EPS_NULL)
-                    throw new Exception("Divide by NULL in CG_solver:alpha");
-                alpha = VectorAssistant.multVector(r, r) / scalar_mult;
+                z_scalar_mult = VectorAssistant.multVector(z, z);
+                if (Math.Abs(z_scalar_mult) < EPS_NULL)   throw new Exception("Divide by NULL in CG_solve:  (z,z)");
+                r_scalar_mult = VectorAssistant.multVector(r, r);
+                if (Math.Abs(r_scalar_mult) < EPS_NULL)   throw new Exception("Divide by NULL in CG_solver: (r,r)");
+                alpha = r_scalar_mult / z_scalar_mult;
                 x.Add(z,alpha);
-                tmp.Equalize(r);
-                tmp.Add(z, -alpha);
-                scalar_mult = VectorAssistant.multVector(r, r);
-                if (Math.Abs(scalar_mult) < EPS_NULL)
-                    throw new Exception("Divide by NULL in CG_solver:betta");
-                betta = VectorAssistant.multVector(tmp, tmp) / scalar_mult;
-                r.Equalize(tmp);
-                tmp.Equalize(r);
-                tmp.Add(z,betta);
-                z.Equalize(tmp);
-                norm = Math.Abs(b.Norm);
-                if (norm < EPS_NULL)
-                    throw new Exception("Divide by NULL in CG_solver:Norm");
+                r.Add(MatrixAssistant.multMatrixVector(A,z), -alpha);
+                betta = VectorAssistant.multVector(r, r) / r_scalar_mult;
+                z.Add(z, betta);
                 residual = r.Norm / norm;
             }
             return x;
