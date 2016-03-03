@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace slae.Input
+namespace slae
 {
-    class input
+    class Input
     {
         string path;
         public void ReadFromFile(out RowColumnSparseMatrix A, out Vector b, out Vector x_init)
@@ -64,7 +64,7 @@ namespace slae.Input
                 x_init = new Vector(x0);
             }
         }
-        public input(string file)
+        public Input(string file)
         {
             path = file;
         }

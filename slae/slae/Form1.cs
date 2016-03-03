@@ -41,7 +41,7 @@ namespace slae
             Vector b;
             Vector x0;
 
-            Input.input Inp = new Input.input(path);
+            Input Inp = new Input(path);
             Inp.ReadFromFile(out A, out b, out x0);
             Solver solver;
             switch(this.methodSolver.SelectedItem.ToString())
