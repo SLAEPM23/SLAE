@@ -36,7 +36,31 @@ namespace slae
             meth_keep = comboBox2.Text;
             meth_solv = comboBox1.Text;
             path = textBox1.Text;
+
+            RowColumnSparseMatrix A;
+            Vector b;
+            Vector x0;
+
+            Input.input Inp = new Input.input(path);
+            Inp.ReadFromFile(out A, out b, out x0);
+
+            Solver solver = new Jacobi();
+            Vector solution = (Vector)solver.Solve(A, b, x0);
+
+            string result = string.Empty;
+            for (int i = 0; i < solution.Size; i++)
+                result += Convert.ToString(solution[i]) + "\n";
+
+            MessageBox.Show(result, "вектор решения");
+            MessageBox.Show(Convert.ToString(solver.iteration), "итерация");
+            MessageBox.Show(Convert.ToString(solver.residual), "невязка");
+
             this.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
