@@ -41,8 +41,8 @@ namespace slae
             Vector b;
             Vector x0;
 
-            Input Inp = new Input(path);
-            Inp.ReadFromFile(out A, out b, out x0);
+            FileManager fileManager = new FileManager(path);
+            fileManager.ReadFromFile(out A, out b, out x0);
             Solver solver;
             switch(this.methodSolver.SelectedItem.ToString())
             {

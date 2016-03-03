@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace slae
 {
-    class Input
+    class FileManager
     {
         string path;
         public void ReadFromFile(out RowColumnSparseMatrix A, out Vector b, out Vector x_init)
@@ -64,7 +64,7 @@ namespace slae
                 x_init = new Vector(x0);
             }
         }
-        public Input(string file)
+        public FileManager(string file)
         {
             path = file;
         }
