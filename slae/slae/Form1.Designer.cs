@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.fileName = new System.Windows.Forms.TextBox();
+            this.methodSolver = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSolver = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.matrixFormat = new System.Windows.Forms.ComboBox();
+            this.viewFile = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -47,24 +47,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Введите путь к файлу с входными данными";
             // 
-            // textBox1
+            // fileName
             // 
-            this.textBox1.Location = new System.Drawing.Point(34, 132);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(344, 20);
-            this.textBox1.TabIndex = 1;
+            this.fileName.Location = new System.Drawing.Point(34, 132);
+            this.fileName.Name = "fileName";
+            this.fileName.Size = new System.Drawing.Size(344, 20);
+            this.fileName.TabIndex = 1;
             // 
-            // comboBox1
+            // methodSolver
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.methodSolver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.methodSolver.FormattingEnabled = true;
+            this.methodSolver.Items.AddRange(new object[] {
             "Якоби",
             "МСГ"});
-            this.comboBox1.Location = new System.Drawing.Point(316, 48);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this.methodSolver.Location = new System.Drawing.Point(316, 48);
+            this.methodSolver.Name = "methodSolver";
+            this.methodSolver.Size = new System.Drawing.Size(121, 21);
+            this.methodSolver.TabIndex = 2;
+            this.methodSolver.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -75,15 +76,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Выберите метод решения СЛАУ";
             // 
-            // button1
+            // buttonSolver
             // 
-            this.button1.Location = new System.Drawing.Point(353, 194);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 34);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Решить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSolver.Location = new System.Drawing.Point(353, 194);
+            this.buttonSolver.Name = "buttonSolver";
+            this.buttonSolver.Size = new System.Drawing.Size(127, 34);
+            this.buttonSolver.TabIndex = 4;
+            this.buttonSolver.Text = "Решить";
+            this.buttonSolver.UseVisualStyleBackColor = true;
+            this.buttonSolver.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -94,41 +95,43 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Выберите метод хранения матрицы";
             // 
-            // comboBox2
+            // matrixFormat
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.matrixFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.matrixFormat.FormattingEnabled = true;
+            this.matrixFormat.Items.AddRange(new object[] {
             "Плотный",
             "Разр. строчно-столбцовый"});
-            this.comboBox2.Location = new System.Drawing.Point(37, 48);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 6;
+            this.matrixFormat.Location = new System.Drawing.Point(37, 48);
+            this.matrixFormat.Name = "matrixFormat";
+            this.matrixFormat.Size = new System.Drawing.Size(121, 21);
+            this.matrixFormat.TabIndex = 6;
             // 
-            // button2
+            // viewFile
             // 
-            this.button2.Location = new System.Drawing.Point(384, 127);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(53, 28);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "обзор";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.viewFile.Location = new System.Drawing.Point(384, 127);
+            this.viewFile.Name = "viewFile";
+            this.viewFile.Size = new System.Drawing.Size(53, 28);
+            this.viewFile.TabIndex = 7;
+            this.viewFile.Text = "обзор";
+            this.viewFile.UseVisualStyleBackColor = true;
+            this.viewFile.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 240);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.viewFile);
+            this.Controls.Add(this.matrixFormat);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSolver);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.methodSolver);
+            this.Controls.Add(this.fileName);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "SLAE_solver";
             this.ResumeLayout(false);
@@ -139,13 +142,13 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox fileName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSolver;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        public System.Windows.Forms.ComboBox comboBox1;
-        public System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button viewFile;
+        public System.Windows.Forms.ComboBox methodSolver;
+        public System.Windows.Forms.ComboBox matrixFormat;
     }
 }
 
