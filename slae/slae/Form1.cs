@@ -26,7 +26,7 @@ namespace slae
         {
             OpenFileDialog path = new OpenFileDialog();
             if (path.ShowDialog() == DialogResult.OK)
-                this.fileName.Text = path.FileName;
+                fileName.Text = path.FileName;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,14 +38,14 @@ namespace slae
             FileManager fileManager = new FileManager(fileName.Text);
             fileManager.ReadFromFile(out A, out b, out x0);
             Solver solver;
-            switch(methodSolver.SelectedItem.ToString())
+            switch(methodSolver.SelectedIndex)
             {
-                case "Якоби":
+                case 0:
                     solver = new Jacobi(Convert.ToDouble(Relaxation.Text), 
                                         Convert.ToInt16(IterationMax.Text),
                                         Convert.ToDouble(ResidualMin.Text));
                     break;
-                case "МСГ":
+                case 1:
                     solver = new ConjugateGradient(Convert.ToInt16(IterationMax.Text),
                                                    Convert.ToDouble(ResidualMin.Text));
                     break;
@@ -63,11 +63,6 @@ namespace slae
             MessageBox.Show(Convert.ToString(solver.iteration), "итерация");
             MessageBox.Show(Convert.ToString(solver.residual), "невязка");
 
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
