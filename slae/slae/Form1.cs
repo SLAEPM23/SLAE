@@ -41,11 +41,13 @@ namespace slae
             switch(methodSolver.SelectedItem.ToString())
             {
                 case "Якоби":
-                    solver = new Jacobi(Convert.ToDouble(Relaxation.Text), Convert.ToInt16(IterationMax.Text),
-                        Convert.ToDouble(ResidualMin.Text));
+                    solver = new Jacobi(Convert.ToDouble(Relaxation.Text), 
+                                        Convert.ToInt16(IterationMax.Text),
+                                        Convert.ToDouble(ResidualMin.Text));
                     break;
                 case "МСГ":
-                    solver = new ConjugateGradient();
+                    solver = new ConjugateGradient(Convert.ToInt16(IterationMax.Text),
+                                                   Convert.ToDouble(ResidualMin.Text));
                     break;
                 default:
                     throw new Exception("Метод не выбран"); 
