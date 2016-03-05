@@ -12,19 +12,14 @@ namespace slae
 {
     public partial class Form1 : Form
     {
-
-        public string meth_keep;
-        public string meth_solv;
-        public string path;
         public Form1()
         {
             InitializeComponent();
-            meth_keep = String.Empty;
-            meth_solv = String.Empty;
-            path = String.Empty;
             IterationMax.Text = Convert.ToString(10000);
             ResidualMin.Text = Convert.ToString(1E-16);
             Relaxation.Text = Convert.ToString(1);
+            methodSolver.SelectedIndex = 0;
+            matrixFormat.SelectedIndex = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -36,15 +31,11 @@ namespace slae
 
         private void button1_Click(object sender, EventArgs e)
         {
-            meth_keep = matrixFormat.Text;
-            meth_solv = methodSolver.Text;
-            path = fileName.Text;
-
             RowColumnSparseMatrix A;
             Vector b;
             Vector x0;
 
-            FileManager fileManager = new FileManager(path);
+            FileManager fileManager = new FileManager(fileName.Text);
             fileManager.ReadFromFile(out A, out b, out x0);
             Solver solver;
             switch(methodSolver.SelectedItem.ToString())
@@ -57,7 +48,7 @@ namespace slae
                     solver = new ConjugateGradient();
                     break;
                 default:
-                    throw new Exception("Метод не выбран");
+                    throw new Exception("Метод не выбран"); 
             }
              
             Vector solution = (Vector)solver.Solve(A, b, x0);
@@ -82,12 +73,12 @@ namespace slae
             switch (methodSolver.SelectedItem.ToString())
             {
                 case "Якоби":
-                    Relaxation.Visible = !Relaxation.Visible;
-                    label4.Visible = !label4.Visible;
+                    Relaxation.Visible = true;
+                    label4.Visible = true;
                     break;
                 default:
-                    Relaxation.Visible = !Relaxation.Visible;
-                    label4.Visible = !label4.Visible;
+                    Relaxation.Visible = false;
+                    label4.Visible = false;
                     break;
             }
         }
