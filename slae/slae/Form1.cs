@@ -47,6 +47,7 @@ namespace slae
             FileManager fileManager = new FileManager(path);
             fileManager.ReadFromFile(out A, out b, out x0);
             Solver solver;
+
             switch(methodSolver.SelectedItem.ToString())
             {
                 case "Якоби":

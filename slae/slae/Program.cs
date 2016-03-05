@@ -16,7 +16,9 @@ namespace slae
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-//
+            Debugger.logFile = Application.StartupPath + ".log";
+            Debugger.ClearFile();
+
             try
             {
                 Form1 Forma = new Form1();

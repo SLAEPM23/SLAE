@@ -59,6 +59,7 @@ namespace slae
                 betta = VectorAssistant.multVector(r, r) / r_scalar_mult;
                 z.Add(z, betta);
                 residual = r.Norm / norm;
+                Debugger.DebugSolver(iteration, residual, x);
             }
             return x;
         }
