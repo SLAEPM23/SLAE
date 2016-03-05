@@ -14,7 +14,7 @@ namespace slae
 //          Не хватает проверки path
             using (System.IO.StreamReader file = new System.IO.StreamReader(path))
             {
-                var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t', ',' },
+                var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t' },
                 StringSplitOptions.RemoveEmptyEntries);
                 int n, m;
                 if (!int.TryParse(st[0], out n))

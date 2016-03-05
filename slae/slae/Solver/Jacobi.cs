@@ -30,16 +30,17 @@ namespace slae
         {
             IVector result = new Vector(b.Size);
             IVector difference = new Vector(b.Size);//f-Ax
+
             double residual1, residual2;
             residual1 = b.Norm;
             result.Equalize(x0);
             difference.Equalize(b);
             difference.Add(MatrixAssistant.multMatrixVector(A, result), -1);
-    
+
             for (int i = 0; i < b.Size; i++)
                 if (Math.Abs(A.Diagonal[i]) < EPS_NULL)
                     throw new Exception("Divide by NULL in Jacobi_solver: diagonal");
-    
+
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++)
             {
                 for (int i = 0; i < b.Size; i++)
