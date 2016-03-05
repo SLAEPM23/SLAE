@@ -20,19 +20,6 @@ namespace slae
             {
                 Form1 Forma = new Form1();
                 Application.Run(Forma);
-
-                //string MethodKeeping = Forma.meth_keep;//метод хранения
-                //string MethodSolving = Forma.meth_solv;//метод решения
-                //string path = Forma.path;//файл с исходными данными
-
-               
-
-               
-
-                
-
-               
-               
             }
             catch (Exception e)
             {

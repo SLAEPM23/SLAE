@@ -22,6 +22,9 @@ namespace slae
             meth_keep = String.Empty;
             meth_solv = String.Empty;
             path = String.Empty;
+            IterationMax.Text = Convert.ToString(10000);
+            ResidualMin.Text = Convert.ToString(1E-16);
+            Relaxation.Text = Convert.ToString(1);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -44,10 +47,11 @@ namespace slae
             FileManager fileManager = new FileManager(path);
             fileManager.ReadFromFile(out A, out b, out x0);
             Solver solver;
-            switch(this.methodSolver.SelectedItem.ToString())
+            switch(methodSolver.SelectedItem.ToString())
             {
                 case "Якоби":
-                    solver = new Jacobi();
+                    solver = new Jacobi(Convert.ToDouble(Relaxation.Text), Convert.ToInt16(IterationMax.Text),
+                        Convert.ToDouble(ResidualMin.Text));
                     break;
                 case "МСГ":
                     solver = new ConjugateGradient();
@@ -75,7 +79,17 @@ namespace slae
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            switch (methodSolver.SelectedItem.ToString())
+            {
+                case "Якоби":
+                    Relaxation.Visible = !Relaxation.Visible;
+                    label4.Visible = !label4.Visible;
+                    break;
+                default:
+                    Relaxation.Visible = !Relaxation.Visible;
+                    label4.Visible = !label4.Visible;
+                    break;
+            }
         }
     }
 }
