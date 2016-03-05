@@ -84,7 +84,7 @@
             // 
             // buttonSolver
             // 
-            this.buttonSolver.Location = new System.Drawing.Point(357, 284);
+            this.buttonSolver.Location = new System.Drawing.Point(362, 284);
             this.buttonSolver.Name = "buttonSolver";
             this.buttonSolver.Size = new System.Drawing.Size(127, 34);
             this.buttonSolver.TabIndex = 4;
@@ -110,7 +110,7 @@
             "Разр. строчно-столбцовый"});
             this.matrixFormat.Location = new System.Drawing.Point(37, 48);
             this.matrixFormat.Name = "matrixFormat";
-            this.matrixFormat.Size = new System.Drawing.Size(121, 21);
+            this.matrixFormat.Size = new System.Drawing.Size(171, 21);
             this.matrixFormat.TabIndex = 6;
             // 
             // viewFile
