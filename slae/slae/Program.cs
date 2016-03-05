@@ -16,6 +16,7 @@ namespace slae
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+//
             try
             {
                 Form1 Forma = new Form1();
