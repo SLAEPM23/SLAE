@@ -64,6 +64,36 @@ namespace slae
                 x_init = new Vector(x0);
             }
         }
+
+        public void ReadFromFileDense(out DenseMatrix A, out Vector b, out Vector x_init)
+        {
+            using (System.IO.StreamReader file = new System.IO.StreamReader(path))
+            {
+                var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t' },
+                StringSplitOptions.RemoveEmptyEntries);
+                int n;
+                if (!int.TryParse(st[0], out n))
+                    throw new Exception("Bad file format");
+                n = int.Parse(st[0]);
+                double[,] a = new double[n,n];
+                double[] rightPart = new double[n];
+                double[] x0 = new double[n];
+                long offset = 1;
+                for (int i = 0; i < n; i++)
+                    for (int j = 0; j < n; j++, offset++)
+                        a[i,j] = double.Parse(st[offset]);
+                
+                for (int i = 0; i < n; i++, offset++)
+                    rightPart[i] = double.Parse(st[offset]);
+
+                for (int i = 0; i < n; i++, offset++)
+                    x0[i] = double.Parse(st[offset]);
+                
+                A = new DenseMatrix(n, a);
+                b = new Vector(rightPart);
+                x_init = new Vector(x0);
+            }
+        }
         public FileManager(string file)
         {
             path = file;

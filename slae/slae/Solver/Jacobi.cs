@@ -54,7 +54,7 @@ namespace slae
                 if (Math.Abs(residual1) < EPS_NULL)
                     throw new Exception("Divide by NULL in Jacobi_solver: residual1");
                 residual = residual2 / residual1;
-                Debugger.DebugSolver(iteration, residual, result);
+                //Debugger.DebugSolver(iteration, residual, result);
             }
 
             return result;
