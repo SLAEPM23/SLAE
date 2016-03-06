@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            using (System.IO.StreamReader file = new System.IO.StreamReader(input.txt))
+            {
+                var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t' },
+                StringSplitOptions.RemoveEmptyEntries);
+                int n;
+                if (!int.TryParse(st[0], out n))
+                    throw new Exception(Bad file format);
+                n = int.Parse(st[0]);
+                
+                double[,] A = new double[n,n] ;
+                long offset = 1;
+
+                for (int i = 0; i  n; i++)
+                    for (int j = 0; j  n; j++, offset++)
+                    A[i,j] = double.Parse(st[offset]);
+           
+            }
+        }
+    }
+}
