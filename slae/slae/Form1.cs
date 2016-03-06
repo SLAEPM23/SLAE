@@ -91,5 +91,19 @@ namespace slae
                     break;
             }
         }
+
+        private void matrixFormat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (matrixFormat.SelectedIndex)
+            {
+                case 0:
+                    label7.Text = "n A";
+                    break;
+                case 1:
+                    label7.Text = "n m ia ja al au di rp x0";
+                    break;
+                    
+            }
+        }
     }
 }
