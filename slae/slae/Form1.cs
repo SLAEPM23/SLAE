@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using slae.Interface;
 
 namespace slae
 {
@@ -31,12 +32,22 @@ namespace slae
 
         private void button1_Click(object sender, EventArgs e)
         {
-            RowColumnSparseMatrix A;
+            IMatrix A;
             Vector b;
             Vector x0;
 
             FileManager fileManager = new FileManager(fileName.Text);
-            fileManager.ReadFromFile(out A, out b, out x0);
+
+            switch (matrixFormat.SelectedIndex)
+            {
+                case 0: fileManager.ReadFromFileDense(out A, out b, out x0);
+                    break;
+                case 1: fileManager.ReadFromFile(out A, out b, out x0);
+                    break;
+                default: throw new Exception("Формат не выбран");
+            }
+            
+            
             Solver solver;
 
             switch(methodSolver.SelectedIndex)
@@ -68,9 +79,9 @@ namespace slae
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (methodSolver.SelectedItem.ToString())
+            switch (methodSolver.SelectedIndex)
             {
-                case "Якоби":
+                case 0:
                     Relaxation.Visible = true;
                     label4.Visible = true;
                     break;

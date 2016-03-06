@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using slae.Interface;
 
 namespace slae
 {
     class FileManager
     {
         string path;
-        public void ReadFromFile(out RowColumnSparseMatrix A, out Vector b, out Vector x_init)
+        public void ReadFromFile(out IMatrix A, out Vector b, out Vector x_init)
         {
 //          Не хватает проверки path
             using (System.IO.StreamReader file = new System.IO.StreamReader(path))
@@ -65,7 +66,7 @@ namespace slae
             }
         }
 
-        public void ReadFromFileDense(out DenseMatrix A, out Vector b, out Vector x_init)
+        public void ReadFromFileDense(out IMatrix A, out Vector b, out Vector x_init)
         {
             using (System.IO.StreamReader file = new System.IO.StreamReader(path))
             {
