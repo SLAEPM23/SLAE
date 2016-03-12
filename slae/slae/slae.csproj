@@ -63,6 +63,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solver\ConjugateGradient.cs" />
+    <Compile Include="Solver\GaussZeidel.cs" />
     <Compile Include="Solver\Jacobi.cs" />
     <Compile Include="Solver\Solver.cs" />
     <Compile Include="Vector\Vector.cs" />
