@@ -83,6 +83,12 @@ namespace slae
             {
                 case 0:
                     Relaxation.Visible = true;
+                    label4.Text = " - параметр релаксации(0<w<=1)";
+                    label4.Visible = true;
+                    break;
+                case 2:
+                    Relaxation.Visible = true;
+                    label4.Text = " - параметр релаксации(0<w<2)";
                     label4.Visible = true;
                     break;
                 default:

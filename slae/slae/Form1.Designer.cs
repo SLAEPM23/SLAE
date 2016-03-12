@@ -68,7 +68,8 @@
             this.methodSolver.FormattingEnabled = true;
             this.methodSolver.Items.AddRange(new object[] {
             "Якоби",
-            "МСГ"});
+            "МСГ",
+            "Гаусса-Зейделя"});
             this.methodSolver.Location = new System.Drawing.Point(293, 48);
             this.methodSolver.Name = "methodSolver";
             this.methodSolver.Size = new System.Drawing.Size(121, 21);
@@ -86,7 +87,7 @@
             // 
             // buttonSolver
             // 
-            this.buttonSolver.Location = new System.Drawing.Point(362, 284);
+            this.buttonSolver.Location = new System.Drawing.Point(395, 290);
             this.buttonSolver.Name = "buttonSolver";
             this.buttonSolver.Size = new System.Drawing.Size(127, 34);
             this.buttonSolver.TabIndex = 4;
@@ -198,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 330);
+            this.ClientSize = new System.Drawing.Size(534, 336);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
