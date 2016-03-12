@@ -37,6 +37,28 @@ namespace slae
             }
         }
 
+        public double this[int i,int j]
+        {
+            get {
+                if (i == j) return di[i];
+                int addr;
+                if (j > i)
+                {
+                    addr = ia[j] + i;
+                    if (ia[j + 1] == ia[j] && j != 0 ) return 0;
+                    return au[addr];
+                }
+                if (i > j)
+                {
+                    addr = ia[i] + j;
+                    if (ia[i + 1] == ia[i] && i != 0 ) return 0;
+                    return al[addr];
+                }
+                
+                return 0;
+            }
+        }
+
         public Interface.IVector Diagonal
         {
             get { return di; }
@@ -79,6 +101,14 @@ namespace slae
             get
             {
                 return size;
+            }
+        }
+
+        public double this[int i, int j]
+        {
+            get
+            {
+                return a[i, j];
             }
         }
 

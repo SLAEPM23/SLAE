@@ -12,6 +12,9 @@ namespace slae.Interface
         void Run(ProcessElement processor);
         IVector Diagonal { get; }
         int Size { get; }
+        double this[int i, int j]
+        { get; }
     }
+
 }
 
