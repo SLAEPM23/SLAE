@@ -37,27 +37,21 @@ namespace slae
             }
         }
 
-        public double this[int i,int j]
+
+        public double this[int i, int j]
         {
-            get {
-                if (i == j) return di[i];
-                int addr;
-                if (j > i)
-                {
-                    addr = ia[j] + i;
-                    if (ia[j + 1] == ia[j] && j != 0 ) return 0;
-                    return au[addr];
-                }
-                if (i > j)
-                {
-                    addr = ia[i] + j;
-                    if (ia[i + 1] == ia[i] && i != 0 ) return 0;
-                    return al[addr];
-                }
-                
-                return 0;
+            get
+            {
+                double res = 0;
+                Run
+               (
+               (int irun, int jrun, double el) => { if (i == irun && j == jrun) res = el; }
+               );
+                return res;
             }
         }
+
+        
 
         public Interface.IVector Diagonal
         {
