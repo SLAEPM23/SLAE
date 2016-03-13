@@ -37,19 +37,32 @@ namespace slae
             }
         }
 
-
-        public double this[int i, int j]
+        public double this[int i,int j]
         {
             get
             {
-                double res = 0;
-                Run
-               (
-               (int irun, int jrun, double el) => { if (i == irun && j == jrun) res = el; }
-               );
-                return res;
+                if (i == j) return di[i];
+                if (i > j)
+                {
+                    for (int jaddr = ia[i]; jaddr < ia[i + 1]; jaddr++)
+                    {
+
+                        if (ja[jaddr] == j) return al[jaddr];
+                        
+                    }
+                }
+                if (i < j)
+                { 
+                    for (int jaddr = ia[j]; jaddr < ia[j + 1]; jaddr++)
+                    {
+                        if (ja[jaddr] == i) return au[jaddr];
+                    }
+                }
+                return 0;
+
             }
         }
+
 
         
 
