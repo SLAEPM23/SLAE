@@ -77,6 +77,9 @@ namespace slae
             }
         }
 
+
+        
+
         public Interface.IVector Diagonal
         {
             get { return di; }
