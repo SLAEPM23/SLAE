@@ -1,0 +1,19 @@
+int StrStolb_to_Plotn()
+{
+	int i, j, k, s;
+	
+	for (i = 0; i<n; i++) A[i,i] = d[i];
+	j = 0; s = 0;
+	
+	for (k = 0; k<n; k++)
+	{
+		s = ia[k + 1] - ia[k];
+		while (s>0)
+		{
+			A[k,ja[j]-1] = al[j];
+			A[ja[j]-1,k] = au[j];
+			j++; s--;
+		}
+	}
+return 0;
+}
