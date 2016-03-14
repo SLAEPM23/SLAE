@@ -78,9 +78,8 @@ namespace slae
             for (int i = 0; i < solution.Size; i++)
                 result += Convert.ToString(solution[i]) + "\n";
 
-            MessageBox.Show(result, "вектор решения");
-            MessageBox.Show(Convert.ToString(solver.iteration), "итерация");
-            MessageBox.Show(Convert.ToString(solver.residual), "невязка");
+            MessageBox.Show("Вектор решения: \n" + result + "\n" + "Количество итераций: " + Convert.ToString(solver.iteration) + "\n" + "Невязка: " + Convert.ToString(solver.residual), "РЕЗУЛЬТАТЫ РЕШЕНИЯ");
+          
 
         }
 

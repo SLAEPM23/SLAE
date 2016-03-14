@@ -87,7 +87,7 @@
             // 
             // buttonSolver
             // 
-            this.buttonSolver.Location = new System.Drawing.Point(395, 290);
+            this.buttonSolver.Location = new System.Drawing.Point(371, 248);
             this.buttonSolver.Name = "buttonSolver";
             this.buttonSolver.Size = new System.Drawing.Size(127, 34);
             this.buttonSolver.TabIndex = 4;
