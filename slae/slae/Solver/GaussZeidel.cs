@@ -11,21 +11,13 @@ namespace slae
     {
         private double relaxation { get; set; }
 
-        public GaussZeidel()
-        {
-            relaxation = 1;
-            maxIteration = 100000;
-            minResidual = 1E-16;
-            residual = 2 * minResidual;
-            EPS_NULL = 1E-8;
-        }
-
-        public GaussZeidel(double _relaxation, int _maxIteration, double _minResidual)
+        public GaussZeidel(double _relaxation = 1, int _maxIteration = 10000, double _minResidual = 1E-16)
         {
             relaxation = _relaxation;
             maxIteration = _maxIteration;
             minResidual = _minResidual;
             residual = 2*minResidual;
+            EPS_NULL = 1E-8;
         }
 
         public override IVector Solve(IMatrix A, IVector b, IVector x0)
@@ -41,7 +33,7 @@ namespace slae
             
             for (int i = 0; i < b.Size; i++)
                 if (Math.Abs(A.Diagonal[i]) < EPS_NULL)
-                    throw new Exception("Divide by NULL in Jacobi_solver: diagonal");
+                    throw new Exception("Divide by NULL in GaussZeidel_solver: diagonal");
 
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++)
             {

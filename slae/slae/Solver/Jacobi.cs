@@ -10,20 +10,14 @@ namespace slae
     class Jacobi : Solver
     {
         private double relaxation { get; set; }
-        public Jacobi()
-        {
-            relaxation = 1;
-            maxIteration = 100000;
-            minResidual = 1E-16;
-            residual = 2*minResidual;
-            EPS_NULL = 1E-8;
-        }
-        public Jacobi(double _relaxation, int _maxIteration, double _minResidual)
+        
+        public Jacobi(double _relaxation = 1, int _maxIteration = 10000, double _minResidual = 1E-16)
         {
             relaxation = _relaxation;
             maxIteration = _maxIteration;
             minResidual = _minResidual;
             residual = 2*minResidual;
+            EPS_NULL = 1E-8;
         }
 
         public override IVector Solve(IMatrix A, IVector b, IVector x0)
