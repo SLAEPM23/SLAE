@@ -95,6 +95,61 @@ namespace slae
                 x_init = new Vector(x0);
             }
         }
+
+        public void ReadFromFileProfile(out IMatrix A, out Vector b, out Vector x_init)
+        {
+            //          Не хватает проверки path
+            using (System.IO.StreamReader file = new System.IO.StreamReader(path))
+            {
+                var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t' },
+                StringSplitOptions.RemoveEmptyEntries);
+                int n;
+                if (!int.TryParse(st[0], out n))
+                    throw new Exception("Bad file format");
+                n = int.Parse(st[0]);
+
+                int[] ial = new int[n + 1];
+                int[] iau = new int[n + 1];
+                double[] al = new double[ial[n + 1] - 1];
+                double[] au = new double[iau[n + 1] - 1];
+                double[] d = new double[n];
+                double[] rightPart = new double[n];
+                double[] x0 = new double[n];
+                long offset = 1;
+
+                for (int i = 0; i < n + 1; i++, offset++)
+                    ial[i] = int.Parse(st[offset]);
+                for (int i = 0; i < n + 1; i++, offset++)
+                    iau[i] = int.Parse(st[offset]);
+                if (ial[0] != 0)
+                {
+                    for (int i = 0; i < n + 1; i++)
+                        ial[i]--;
+
+                    for (int i = 0; i < n + 1; i++)
+                        iau[i]--;
+                }
+
+                for (int i = 0; i < ial[n + 1] - 1; i++, offset++)
+                    al[i] = double.Parse(st[offset]);
+
+                for (int i = 0; i < iau[n + 1] - 1; i++, offset++)
+                    au[i] = double.Parse(st[offset]);
+
+                for (int i = 0; i < n; i++, offset++)
+                    d[i] = double.Parse(st[offset]);
+
+                for (int i = 0; i < n; i++, offset++)
+                    rightPart[i] = double.Parse(st[offset]);
+
+                for (int i = 0; i < n; i++, offset++)
+                    x0[i] = double.Parse(st[offset]);
+
+                A = new ProfileMatrix(n, ial, iau, al, au, d);
+                b = new Vector(rightPart);
+                x_init = new Vector(x0);
+            }
+        }
         public FileManager(string file)
         {
             path = file;

@@ -52,7 +52,9 @@ namespace slae
                     for (int j = 0; j < i; j++)
                         difference[i] -= A[i,j]*result[j];
                     for (int j = i; j < b.Size; j++)
-                        difference[i] -= A[i, j]*x_prev[j];
+                    {
+                        difference[i] -= A[i,j]*x_prev[j];
+                    }
                     difference[i] *= (relaxation/A.Diagonal[i]);
                     result[i] = x_prev[i] + difference[i];
                 }

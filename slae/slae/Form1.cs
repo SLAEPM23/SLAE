@@ -44,6 +44,8 @@ namespace slae
                     break;
                 case 1: fileManager.ReadFromFile(out A, out b, out x0);
                     break;
+                case 2: fileManager.ReadFromFileProfile(out A, out b, out x0);
+                    break;
                 default: throw new Exception("Формат не выбран");
             }
             
@@ -112,6 +114,9 @@ namespace slae
                     break;
                 case 1:
                     label7.Text = "n m ia ja al au di rp x0";
+                    break;
+                case 2:
+                    label7.Text = "n ial iau al au di rp x0";
                     break;
                     
             }
