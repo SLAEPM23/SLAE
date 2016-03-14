@@ -131,10 +131,10 @@ namespace slae
                         iau[i]--;
                 }
                 
-                for (int i = 0; i < ial[n] - 1; i++, offset++)
+                for (int i = 0; i < ial[n]; i++, offset++)
                     al[i] = double.Parse(st[offset]);
 
-                for (int i = 0; i < iau[n] - 1; i++, offset++)
+                for (int i = 0; i < iau[n]; i++, offset++)
                     au[i] = double.Parse(st[offset]);
 
                 for (int i = 0; i < n; i++, offset++)
