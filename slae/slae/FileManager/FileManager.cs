@@ -21,19 +21,20 @@ namespace slae
                 if (!int.TryParse(st[0], out n))
                     throw new Exception("Bad file format");
                 n = int.Parse(st[0]);
-                m = int.Parse(st[1]);
 
                 int[] ia = new int[n + 1];
-                int[] ja = new int[m];
-                double[] al = new double[m];
-                double[] au = new double[m];
+                
                 double[] d = new double[n];
                 double[] rightPart = new double[n];
                 double[] x0 = new double[n];
-                long offset = 2;
+                long offset = 1;
 
                 for (int i = 0; i < n + 1; i++, offset++)
                     ia[i] = int.Parse(st[offset]);
+                m = ia[n] - 1;
+                int[] ja = new int[m];
+                double[] al = new double[m];
+                double[] au = new double[m];
                 for (int i = 0; i < m; i++, offset++)
                     ja[i] = int.Parse(st[offset]);
                 if (ia[0] != 0)
@@ -110,8 +111,6 @@ namespace slae
 
                 int[] ial = new int[n + 1];
                 int[] iau = new int[n + 1];
-                double[] al = new double[ial[n + 1] - 1];
-                double[] au = new double[iau[n + 1] - 1];
                 double[] d = new double[n];
                 double[] rightPart = new double[n];
                 double[] x0 = new double[n];
@@ -121,6 +120,8 @@ namespace slae
                     ial[i] = int.Parse(st[offset]);
                 for (int i = 0; i < n + 1; i++, offset++)
                     iau[i] = int.Parse(st[offset]);
+                double[] al = new double[ial[n] - 1];
+                double[] au = new double[iau[n] - 1];
                 if (ial[0] != 0)
                 {
                     for (int i = 0; i < n + 1; i++)
@@ -129,11 +130,11 @@ namespace slae
                     for (int i = 0; i < n + 1; i++)
                         iau[i]--;
                 }
-
-                for (int i = 0; i < ial[n + 1] - 1; i++, offset++)
+                
+                for (int i = 0; i < ial[n] - 1; i++, offset++)
                     al[i] = double.Parse(st[offset]);
 
-                for (int i = 0; i < iau[n + 1] - 1; i++, offset++)
+                for (int i = 0; i < iau[n] - 1; i++, offset++)
                     au[i] = double.Parse(st[offset]);
 
                 for (int i = 0; i < n; i++, offset++)
