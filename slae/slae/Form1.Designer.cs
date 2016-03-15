@@ -59,7 +59,7 @@
             // 
             this.fileName.Location = new System.Drawing.Point(34, 197);
             this.fileName.Name = "fileName";
-            this.fileName.Size = new System.Drawing.Size(344, 20);
+            this.fileName.Size = new System.Drawing.Size(380, 20);
             this.fileName.TabIndex = 1;
             // 
             // methodSolver
@@ -69,7 +69,8 @@
             this.methodSolver.Items.AddRange(new object[] {
             "Якоби",
             "МСГ",
-            "Гаусса-Зейделя"});
+            "Гаусса-Зейделя",
+            "ЛОС"});
             this.methodSolver.Location = new System.Drawing.Point(293, 48);
             this.methodSolver.Name = "methodSolver";
             this.methodSolver.Size = new System.Drawing.Size(121, 21);
@@ -87,7 +88,7 @@
             // 
             // buttonSolver
             // 
-            this.buttonSolver.Location = new System.Drawing.Point(371, 248);
+            this.buttonSolver.Location = new System.Drawing.Point(435, 290);
             this.buttonSolver.Name = "buttonSolver";
             this.buttonSolver.Size = new System.Drawing.Size(127, 34);
             this.buttonSolver.TabIndex = 4;
@@ -120,7 +121,7 @@
             // 
             // viewFile
             // 
-            this.viewFile.Location = new System.Drawing.Point(384, 192);
+            this.viewFile.Location = new System.Drawing.Point(426, 192);
             this.viewFile.Name = "viewFile";
             this.viewFile.Size = new System.Drawing.Size(53, 28);
             this.viewFile.TabIndex = 7;
@@ -174,9 +175,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(356, 104);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(131, 13);
+            this.label6.Size = new System.Drawing.Size(210, 13);
             this.label6.TabIndex = 13;
-            this.label6.Text = " - минимальная невязка";
+            this.label6.Text = " - минимальная относительная невязка";
             // 
             // label7
             // 
@@ -200,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 336);
+            this.ClientSize = new System.Drawing.Size(574, 336);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);

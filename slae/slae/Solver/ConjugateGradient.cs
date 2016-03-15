@@ -11,18 +11,13 @@ namespace slae
     {
         double alpha;
         double betta;
-        public ConjugateGradient()
-        {
-            maxIteration = 1000;
-            minResidual = 1E-4;
-            residual = 2 * minResidual;
-            EPS_NULL = 10E-7;
-        }
-        public ConjugateGradient(int _maxIteration, double _minResidual)
+        
+        public ConjugateGradient(int _maxIteration = 1000, double _minResidual = 1E-16)
         {
             maxIteration = _maxIteration;
             minResidual = _minResidual;
             residual = 2 * minResidual;
+            EPS_NULL = 10E-7;
         }
 
         public override IVector Solve(IMatrix A, IVector b, IVector x0)

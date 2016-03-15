@@ -68,6 +68,10 @@ namespace slae
                                         Convert.ToInt16(IterationMax.Text),
                                         Convert.ToDouble(ResidualMin.Text));
                     break;
+                case 3:
+                    solver = new LOS(Convert.ToInt16(IterationMax.Text),
+                                        Convert.ToDouble(ResidualMin.Text));
+                    break;
                 default:
                     throw new Exception("Метод не выбран"); 
             }
@@ -96,6 +100,11 @@ namespace slae
                     Relaxation.Visible = true;
                     label4.Text = " - параметр релаксации(0<w<2)";
                     label4.Visible = true;
+                    break;
+                case 3:
+                    label6.Text = " - минимальный квадрат нормы невязки";
+                    Relaxation.Visible = false;
+                    label4.Visible = false;
                     break;
                 default:
                     Relaxation.Visible = false;

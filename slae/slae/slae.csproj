@@ -65,6 +65,7 @@
     <Compile Include="Solver\ConjugateGradient.cs" />
     <Compile Include="Solver\GaussZeidel.cs" />
     <Compile Include="Solver\Jacobi.cs" />
+    <Compile Include="Solver\LOS.cs" />
     <Compile Include="Solver\Solver.cs" />
     <Compile Include="Vector\Vector.cs" />
     <Compile Include="Vector\VectorAssistant.cs" />
