@@ -16,7 +16,7 @@ namespace slae
             maxIteration = 1000;
             minResidual = 1E-4;
             residual = 2 * minResidual;
-            EPS_NULL = 1E-8;
+            EPS_NULL = 10E-7;
         }
         public ConjugateGradient(int _maxIteration, double _minResidual)
         {
@@ -31,8 +31,9 @@ namespace slae
             IVector x = new Vector(b.Size);
             IVector r = new Vector(b.Size);
             IVector z = new Vector(b.Size);
+
 //          Check errors
-            double z_scalar_mult, r_scalar_mult;
+            double Azz, rr;
             double norm;
 
             norm = b.Norm;
@@ -46,20 +47,20 @@ namespace slae
             r.Equalize(b);
             r.Add(MatrixAssistant.multMatrixVector(A,x),-1);
             z.Equalize(r);
-
+            alpha = 1000;
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++ )
             {
-                z_scalar_mult = VectorAssistant.multVector(z, z);
-                if (Math.Abs(z_scalar_mult) < EPS_NULL)   throw new Exception("Divide by NULL in CG_solve:  (z,z)");
-                r_scalar_mult = VectorAssistant.multVector(r, r);
-                if (Math.Abs(r_scalar_mult) < EPS_NULL)   throw new Exception("Divide by NULL in CG_solver: (r,r)");
-                alpha = r_scalar_mult / z_scalar_mult;
+                rr = VectorAssistant.multVector(r, r);
+                Azz = VectorAssistant.multVector(MatrixAssistant.multMatrixVector(A, z), z);
+                if (Math.Abs(Azz) < EPS_NULL)   return x;
+                alpha = rr / Azz;
                 x.Add(z,alpha);
                 r.Add(MatrixAssistant.multMatrixVector(A,z), -alpha);
-                betta = VectorAssistant.multVector(r, r) / r_scalar_mult;
+                betta = VectorAssistant.multVector(r, r) / rr;
+                z.Equalize(r);
                 z.Add(z, betta);
                 residual = r.Norm / norm;
-                Debugger.DebugSolver(iteration, residual, x);
+                
             }
             return x;
         }
