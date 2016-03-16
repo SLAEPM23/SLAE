@@ -46,16 +46,16 @@ namespace slae
             for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++ )
             {
                 rr = VectorAssistant.multVector(r, r);
-                Azz = VectorAssistant.multVector(MatrixAssistant.multMatrixVector(A, z), z);
+                var Az = MatrixAssistant.multMatrixVector(A, z);
+                Azz = VectorAssistant.multVector(Az, z);
                 if (Math.Abs(Azz) < EPS_NULL)   return x;
                 alpha = rr / Azz;
                 x.Add(z,alpha);
-                r.Add(MatrixAssistant.multMatrixVector(A,z), -alpha);
+                r.Add(Az, -alpha);
                 betta = VectorAssistant.multVector(r, r) / rr;
-                z.Equalize(r);
-                z.Add(z, betta);
-                residual = r.Norm / norm;
-                
+                z=VectorAssistant.multScalar(z,betta);
+                z.Add(r, 1);
+                residual = r.Norm / norm;                
             }
             return x;
         }
