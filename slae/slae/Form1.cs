@@ -47,6 +47,8 @@ namespace slae
                     break;
                 case 2: fileManager.ReadFromFileProfile(out A, out b, out x0);
                     break;
+                case 3: fileManager.ReadFromFileCoordinate(out A, out b, out x0);
+                    break;
                 default: throw new Exception("Формат не выбран");
             }
             
@@ -136,7 +138,9 @@ namespace slae
                 case 2:
                     label7.Text = "n ial iau al au di rp x0";
                     break;
-                    
+                case 3:
+                    label7.Text = "n m elem iaddr jaddr";
+                    break;
             }
         }
     }

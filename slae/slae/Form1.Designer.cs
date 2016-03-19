@@ -112,7 +112,8 @@
             this.matrixFormat.Items.AddRange(new object[] {
             "Плотный",
             "Разр. строчно-столбцовый",
-            "Профильный"});
+            "Профильный",
+            "Координатный"});
             this.matrixFormat.Location = new System.Drawing.Point(37, 48);
             this.matrixFormat.Name = "matrixFormat";
             this.matrixFormat.Size = new System.Drawing.Size(171, 21);
