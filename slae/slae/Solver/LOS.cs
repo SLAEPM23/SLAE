@@ -42,6 +42,7 @@ namespace slae
                 p = VectorAssistant.multScalar(betta, p);
                 p.Add(MatrixAssistant.multMatrixVector(A,r),1);
                 residual -= alpha*alpha*p_scal;
+                //Debugger.DebugSolver(iteration, residual, result);
             }
             return result;
         }
