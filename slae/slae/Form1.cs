@@ -133,7 +133,7 @@ namespace slae
                     label7.Text = "n A";
                     break;
                 case 1:
-                    label7.Text = "n m ia ja al au di rp x0";
+                    label7.Text = "n ia ja al au di rp x0";
                     break;
                 case 2:
                     label7.Text = "n ial iau al au di rp x0";
