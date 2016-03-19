@@ -23,6 +23,7 @@ namespace slae
             IVector z = new Vector(b.Size);
             double alpha, betta;
             double p_scal;
+            double residual_prev;//для проверки изменения невязки
 
             r.Equalize(b);
             result.Equalize(x0);
@@ -30,7 +31,8 @@ namespace slae
             z.Equalize(r);
             p.Equalize(MatrixAssistant.multMatrixVector(A,z));
             residual = VectorAssistant.multVector(r, r);
-            for (iteration = 1; iteration <= maxIteration && residual>minResidual; iteration++)
+            residual_prev = residual + 1;
+            for (iteration = 1; iteration <= maxIteration && residual>minResidual && residual_prev-residual>minResidual; iteration++)
             {
                 p_scal = VectorAssistant.multVector(p, p);
                 alpha = VectorAssistant.multVector(p,r)/p_scal;
@@ -41,6 +43,7 @@ namespace slae
                 z.Add(r,1);
                 p = VectorAssistant.multScalar(betta, p);
                 p.Add(MatrixAssistant.multMatrixVector(A,r),1);
+                residual_prev = residual;
                 residual -= alpha*alpha*p_scal;
                 //Debugger.DebugSolver(iteration, residual, result);
             }

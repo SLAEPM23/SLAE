@@ -224,4 +224,54 @@ namespace slae
 
 
     }
+     class CoordinateMatrix: Interface.IMatrix
+    {
+        int size;
+        double[] elem;
+        int[] iaddr;
+        int[] jaddr;
+        Vector di;
+        public CoordinateMatrix(int _size, int[] _iaddr, int[] _jaddr, double[] _elem)
+        {
+            size = _size;
+            iaddr = _iaddr;
+            jaddr = _jaddr;
+            elem = _elem;
+            di = new Vector(size);
+            for (int j = 0; j < size; j++ )
+                for (int i = 0; i < elem.Length; i++)
+                {
+                    if (iaddr[i] == jaddr[i]) di[j] = elem[i];
+                }
+
+        }
+        public void Run(ProcessElement processor)
+        {
+            for (int index = 0; index < elem.Length; index++)
+            {
+                processor(iaddr[index], jaddr[index], elem[index]);
+            }
+        }
+
+        public IVector Diagonal
+        {
+            get { return di; }
+        }
+
+        public int Size
+        {
+            get { return size; }
+        }
+
+        public double this[int i, int j]
+        {
+            get {
+                    for (int index = 0; index < elem.Length; index++)
+                    {
+                        if (iaddr[index] == i && jaddr[index] == j) return elem[index];
+                    }
+                    return 0;
+            }
+        }
+    }
 }

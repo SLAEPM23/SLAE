@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using slae.Interface;
+using System.IO;
 
 namespace slae
 {
@@ -80,10 +81,19 @@ namespace slae
 
             string result = string.Empty;
             for (int i = 0; i < solution.Size; i++)
-                result += Convert.ToString(solution[i]) + "\n";
-
-            MessageBox.Show("Вектор решения: \n" + result + "\n" + "Количество итераций: " + Convert.ToString(solver.iteration) + "\n" + "Невязка: " + Convert.ToString(solver.residual), "РЕЗУЛЬТАТЫ РЕШЕНИЯ");
-          
+                result += Convert.ToString(solution[i]) + "\r\n";
+            
+            File.WriteAllText("result.txt", "");
+            
+            string FinalResult = "Вектор решения: \r\n" + result + "\r\n" + "Количество итераций: " + Convert.ToString(solver.iteration) + "\r\n" + "Невязка: " + Convert.ToString(solver.residual);
+            
+            if (solution.Size <= 20)
+                MessageBox.Show(FinalResult, "РЕЗУЛЬТАТЫ РЕШЕНИЯ");
+            else
+            {
+                MessageBox.Show("Результаты решения в файле /SLAE/slae/slae/bin/Debug/result.txt");
+                File.WriteAllText("result.txt", FinalResult);
+            }
 
         }
 
