@@ -130,7 +130,7 @@ namespace slae
             switch (matrixFormat.SelectedIndex)
             {
                 case 0:
-                    label7.Text = "n A";
+                    label7.Text = "n A rp x0";
                     break;
                 case 1:
                     label7.Text = "n ia ja al au di rp x0";
@@ -139,7 +139,7 @@ namespace slae
                     label7.Text = "n ial iau al au di rp x0";
                     break;
                 case 3:
-                    label7.Text = "n m elem iaddr jaddr";
+                    label7.Text = "n m elem iaddr jaddr rp x0";
                     break;
             }
         }
