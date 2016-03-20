@@ -51,6 +51,7 @@ namespace slae
                     break;
                 default: throw new Exception("Формат не выбран");
             }
+            string res_residual = "Невязка: ";
             
             
             Solver solver;
@@ -74,6 +75,7 @@ namespace slae
                 case 3:
                     solver = new LOS(Convert.ToInt16(IterationMax.Text),
                                         Convert.ToDouble(ResidualMin.Text));
+                    res_residual = "Квадрат нормы невязки: ";
                     break;
                 default:
                     throw new Exception("Метод не выбран"); 
@@ -86,8 +88,8 @@ namespace slae
                 result += Convert.ToString(solution[i]) + "\r\n";
             
             File.WriteAllText("result.txt", "");
-            
-            string FinalResult = "Вектор решения: \r\n" + result + "\r\n" + "Количество итераций: " + Convert.ToString(solver.iteration) + "\r\n" + "Невязка: " + Convert.ToString(solver.residual);
+
+            string FinalResult = "Вектор решения: \r\n" + result + "\r\n" + "Количество итераций: " + Convert.ToString(solver.iteration) + "\r\n" + res_residual + Convert.ToString(solver.residual);
             
             if (solution.Size <= 20)
                 MessageBox.Show(FinalResult, "РЕЗУЛЬТАТЫ РЕШЕНИЯ");

@@ -16,7 +16,6 @@ namespace slae
             relaxation = _relaxation;
             maxIteration = _maxIteration;
             minResidual = _minResidual;
-            residual = 2*minResidual;
             EPS_NULL = 1E-8;
         }
 
@@ -27,6 +26,8 @@ namespace slae
             IVector difference = new Vector(b.Size);//f-Ax
 
             double residual1, residual2;
+            double residual_prev;//для проверки изменения невязки
+            residual =1;
             residual1 = b.Norm;
             x_prev.Equalize(x0);
             
@@ -34,8 +35,9 @@ namespace slae
             for (int i = 0; i < b.Size; i++)
                 if (Math.Abs(A.Diagonal[i]) < EPS_NULL)
                     throw new Exception("Divide by NULL in GaussZeidel_solver: diagonal");
+            residual_prev = 2 * residual;
 
-            for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++)
+            for (iteration = 0; iteration < maxIteration && residual > minResidual && residual_prev > residual; iteration++)
             {
                 difference.Equalize(b);
                 //result.Nullify();
@@ -53,6 +55,7 @@ namespace slae
                 difference.Equalize(b);
                 difference.Add(MatrixAssistant.multMatrixVector(A, result), -1);
                 residual2 = difference.Norm;
+                residual_prev = residual;
                 residual = residual2 / residual1;
                 //Debugger.DebugSolver(iteration, residual, result);
                 x_prev.Equalize(result);

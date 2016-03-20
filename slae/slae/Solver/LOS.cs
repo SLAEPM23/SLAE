@@ -32,7 +32,7 @@ namespace slae
             p.Equalize(MatrixAssistant.multMatrixVector(A,z));
             residual = VectorAssistant.multVector(r, r);
             residual_prev = 2*residual;
-            for (iteration = 1; iteration <= maxIteration && residual>minResidual && residual_prev-residual>minResidual; iteration++)
+            for (iteration = 1; iteration <= maxIteration && residual > minResidual && residual_prev - residual > minResidual; iteration++)
             {
                 p_scal = VectorAssistant.multVector(p, p);
                 alpha = VectorAssistant.multVector(p,r)/p_scal;

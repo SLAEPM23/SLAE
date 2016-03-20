@@ -16,7 +16,6 @@ namespace slae
             relaxation = _relaxation;
             maxIteration = _maxIteration;
             minResidual = _minResidual;
-            residual = 2*minResidual;
             EPS_NULL = 1E-8;
         }
 
@@ -26,6 +25,8 @@ namespace slae
             IVector difference = new Vector(b.Size);//f-Ax
 
             double residual1, residual2;
+            double residual_prev;//для проверки изменения невязки
+            residual = 1;
             residual1 = b.Norm;
             result.Equalize(x0);
             difference.Equalize(b);
@@ -34,8 +35,9 @@ namespace slae
             for (int i = 0; i < b.Size; i++)
                 if (Math.Abs(A.Diagonal[i]) < EPS_NULL)
                     throw new Exception("Divide by NULL in Jacobi_solver: diagonal");
+            residual_prev = 2 * residual;
 
-            for (iteration = 0; iteration < maxIteration && residual > minResidual; iteration++)
+            for (iteration = 0; iteration < maxIteration && residual > minResidual && residual_prev > residual; iteration++)
             {
                 for (int i = 0; i < b.Size; i++)
                 {
@@ -47,6 +49,7 @@ namespace slae
                 residual2 = difference.Norm;
                 if (Math.Abs(residual1) < EPS_NULL)
                     throw new Exception("Divide by NULL in Jacobi_solver: residual1");
+                residual_prev = residual;
                 residual = residual2 / residual1;
                 //Debugger.DebugSolver(iteration, residual, result);
             }
