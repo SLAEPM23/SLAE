@@ -17,8 +17,8 @@ namespace slae
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Debugger.logFile = Application.StartupPath + ".log";
-            //Debugger.ClearFile();
+            Debugger.logFile = Application.StartupPath + ".log";
+            Debugger.ClearFile();
 
             try
             {

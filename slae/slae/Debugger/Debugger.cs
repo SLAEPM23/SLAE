@@ -20,10 +20,10 @@ namespace slae
         {
             string message = "i: " + Convert.ToString(iteration) + "\t" +
                              "r:" + Convert.ToString(residual) + "\t";
-            message += "x:";
-            for (int i = 0; i < x.Size; i++ )
-                message += " " + Convert.ToString(x[i]);
-            message += "\n";
+            //message += "x:";
+            //for (int i = 0; i < x.Size; i++ )
+            //    message += " " + Convert.ToString(x[i]);
+            message += "\n\r";
             File.AppendAllText(logFile,message);
         }
     }
