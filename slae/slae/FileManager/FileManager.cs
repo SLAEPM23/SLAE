@@ -156,7 +156,7 @@ namespace slae
         {
             using (System.IO.StreamReader file = new System.IO.StreamReader(path))
             {
-                var st = file.ReadToEnd().Split(new char[] { '\n', ' ', '\t', '\r' },
+                var st = file.ReadToEnd().Replace('.',',').Split(new char[] { '\n', ' ', '\t', '\r' },
                 StringSplitOptions.RemoveEmptyEntries);
                 int n, m;
                 if (!int.TryParse(st[0], out n))
