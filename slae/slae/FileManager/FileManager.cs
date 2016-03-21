@@ -175,7 +175,14 @@ namespace slae
                     iaddr[i] = int.Parse(st[offset]);
                 for (int i = 0; i < m; i++, offset++)
                     jaddr[i] = int.Parse(st[offset]);
-                
+                if (iaddr[0] != 0)
+                {
+                    for (int i = 0; i < m; i++)
+                        iaddr[i]--;
+                        
+                    for (int i = 0; i < m; i++)
+                        jaddr[i]--;
+                }
 
                 for (int i = 0; i < n; i++, offset++)
                     rightPart[i] = double.Parse(st[offset]);
