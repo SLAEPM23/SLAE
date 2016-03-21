@@ -161,20 +161,19 @@ namespace slae
                 int n, m;
                 if (!int.TryParse(st[0], out n))
                     throw new Exception("Bad file format");
-                n = int.Parse(st[0]);
-                m = int.Parse(st[1]);
+                m = int.Parse(st[0]);
                 double[] elem = new double[m];
                 int[] iaddr = new int[m];
                 int[] jaddr = new int[m];
                 double[] rightPart = new double[n];
                 double[] x0 = new double[n];
-                long offset = 2;
+                long offset = 1;
                 for (int i = 0; i < m; i++, offset++)
-                    elem[i] = double.Parse(st[offset]);
-                for (int i = 0; i < m; i++, offset++)
+                {
                     iaddr[i] = int.Parse(st[offset]);
-                for (int i = 0; i < m; i++, offset++)
                     jaddr[i] = int.Parse(st[offset]);
+                    elem[i] = double.Parse(st[offset]);
+                }
                 if (iaddr[0] != 0)
                 {
                     for (int i = 0; i < m; i++)
@@ -184,11 +183,13 @@ namespace slae
                         jaddr[i]--;
                 }
 
+                n = int.Parse(st[offset]);
+                offset++;
                 for (int i = 0; i < n; i++, offset++)
                     rightPart[i] = double.Parse(st[offset]);
 
-                for (int i = 0; i < n; i++, offset++)
-                    x0[i] = double.Parse(st[offset]);
+                for (int i = 0; i < n; i++ /*offset++*/)
+                    x0[i] = 0;/*double.Parse(st[offset]);*/
 
                 A = new CoordinateMatrix(n, iaddr, jaddr, elem);
                 b = new Vector(rightPart);

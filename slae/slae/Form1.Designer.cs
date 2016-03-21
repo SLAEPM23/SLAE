@@ -94,7 +94,7 @@
             // 
             this.buttonSolver.BackColor = System.Drawing.Color.Red;
             this.buttonSolver.Enabled = false;
-            this.buttonSolver.Location = new System.Drawing.Point(439, 243);
+            this.buttonSolver.Location = new System.Drawing.Point(439, 255);
             this.buttonSolver.Name = "buttonSolver";
             this.buttonSolver.Size = new System.Drawing.Size(127, 34);
             this.buttonSolver.TabIndex = 4;
@@ -211,7 +211,7 @@
             // 
             this.viewMatrix.BackColor = System.Drawing.Color.Red;
             this.viewMatrix.Enabled = false;
-            this.viewMatrix.Location = new System.Drawing.Point(34, 243);
+            this.viewMatrix.Location = new System.Drawing.Point(23, 255);
             this.viewMatrix.Name = "viewMatrix";
             this.viewMatrix.Size = new System.Drawing.Size(112, 34);
             this.viewMatrix.TabIndex = 16;
@@ -222,7 +222,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 279);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 318);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(10, 10);
@@ -234,7 +234,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 287);
+            this.ClientSize = new System.Drawing.Size(620, 329);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.viewMatrix);
             this.Controls.Add(this.label8);
