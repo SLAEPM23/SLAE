@@ -171,6 +171,7 @@ namespace slae
                     dataGridView1.Visible = false;
                     Size = new Size(640, 330);
                 }
+            label9.Visible = false;
         }
 
         private void Relaxation_TextChanged(object sender, EventArgs e)
@@ -179,9 +180,11 @@ namespace slae
             {
                 buttonSolver.Enabled = false;
                 buttonSolver.BackColor = Color.Red;
-                Relaxation.BackColor = Color.Red;
+                label4.ForeColor = Color.Red;
             }
             else
+            {
+                label4.ForeColor = Color.Black;
                 if (IterationMax.TextLength > 0
                 && ResidualMin.TextLength > 0
                 && Relaxation.TextLength > 0
@@ -189,8 +192,8 @@ namespace slae
                 {
                     buttonSolver.Enabled = true;
                     buttonSolver.BackColor = Color.Green;
-                    Relaxation.BackColor = Color.White;
                 }
+            }
         }
 
         private void ResidualMin_TextChanged(object sender, EventArgs e)
@@ -199,9 +202,11 @@ namespace slae
             {
                 buttonSolver.Enabled = false;
                 buttonSolver.BackColor = Color.Red;
-                ResidualMin.BackColor = Color.Red;
+                label6.ForeColor = Color.Red;
             }
             else
+            {
+                label6.ForeColor = Color.Black;
                 if (IterationMax.TextLength > 0
                 && ResidualMin.TextLength > 0
                 && Relaxation.TextLength > 0
@@ -209,8 +214,8 @@ namespace slae
                 {
                     buttonSolver.Enabled = true;
                     buttonSolver.BackColor = Color.Green;
-                    ResidualMin.BackColor = Color.White;
                 }
+            }
         }
 
         private void IterationMax_TextChanged(object sender, EventArgs e)
@@ -219,18 +224,20 @@ namespace slae
             {
                 buttonSolver.Enabled = false;
                 buttonSolver.BackColor = Color.Red;
-                IterationMax.BackColor = Color.Red;
+                label5.ForeColor = Color.Red;
             }
             else
-                if(IterationMax.TextLength > 0
-                &&  ResidualMin.TextLength > 0
-                &&  Relaxation.TextLength  > 0
+            {
+                label5.ForeColor = Color.Black;
+                if (IterationMax.TextLength > 0
+                && ResidualMin.TextLength > 0
+                && Relaxation.TextLength > 0
                 && fileName.TextLength > 0)
                 {
                     buttonSolver.Enabled = true;
                     buttonSolver.BackColor = Color.Green;
-                    IterationMax.BackColor = Color.White;
                 }
+            }
         }
 
         private void viewMatrix_Click(object sender, EventArgs e)
@@ -255,31 +262,40 @@ namespace slae
                         break;
                     default: throw new Exception("Формат не выбран");
                 }
-
-                DataTable table = new DataTable();
-                for (int i = 0; i < A.Size; i++)
+                if (A.Size < 100)
                 {
-                    DataColumn col = new DataColumn((i + 1).ToString());
-                    table.Columns.Add(col);
-                }
-                for (int i = 0; i < A.Size; i++)
-                {
-                    DataRow row = table.NewRow();
-                    
-                    for (int j = 0; j < A.Size; j++)
+                    DataTable table = new DataTable();
+                    for (int i = 0; i < A.Size; i++)
                     {
-                        row[j] = A[i, j];
+                        DataColumn col = new DataColumn((i + 1).ToString());
+                        table.Columns.Add(col);
                     }
-                    table.Rows.Add(row);
+                    for (int i = 0; i < A.Size; i++)
+                    {
+                        DataRow row = table.NewRow();
+
+                        for (int j = 0; j < A.Size; j++)
+                        {
+                            row[j] = A[i, j];
+                        }
+                        table.Rows.Add(row);
+                    }
+                    dataGridView1.DataSource = table;
+                    for (int i = 0; i < A.Size; i++)
+                        dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
+                    dataGridView1.Visible = true;
+                    this.Size = new Size(640, 540);
+                    dataGridView1.Width = 620;
+                    dataGridView1.Height = 210;
+                    viewMatrix.BackColor = Color.White;
                 }
-                dataGridView1.DataSource = table;
-                for (int i = 0; i < A.Size; i++)
-                    dataGridView1.Rows[i].HeaderCell.Value = (i+1).ToString();
-                dataGridView1.Visible = true;
-                this.Size = new Size(640, 540);
-                dataGridView1.Width = 620;
-                dataGridView1.Height = 210;
-                viewMatrix.BackColor = Color.White;
+                else
+                {
+                    label9.Visible = true;
+                    viewMatrix.BackColor = Color.Orange;
+                    viewMatrix.Enabled = false;
+                }
+
             }
             else
             {
@@ -293,5 +309,6 @@ namespace slae
         {
         //        dataGridView1.Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();  
         }
+
     }
 }

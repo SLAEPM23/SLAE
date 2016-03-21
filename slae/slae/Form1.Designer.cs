@@ -46,6 +46,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.viewMatrix = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             // 
             this.buttonSolver.BackColor = System.Drawing.Color.Red;
             this.buttonSolver.Enabled = false;
-            this.buttonSolver.Location = new System.Drawing.Point(439, 255);
+            this.buttonSolver.Location = new System.Drawing.Point(426, 241);
             this.buttonSolver.Name = "buttonSolver";
             this.buttonSolver.Size = new System.Drawing.Size(127, 34);
             this.buttonSolver.TabIndex = 4;
@@ -132,7 +133,7 @@
             this.viewFile.Name = "viewFile";
             this.viewFile.Size = new System.Drawing.Size(53, 28);
             this.viewFile.TabIndex = 7;
-            this.viewFile.Text = "обзор";
+            this.viewFile.Text = "Обзор";
             this.viewFile.UseVisualStyleBackColor = true;
             this.viewFile.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -211,7 +212,7 @@
             // 
             this.viewMatrix.BackColor = System.Drawing.Color.Red;
             this.viewMatrix.Enabled = false;
-            this.viewMatrix.Location = new System.Drawing.Point(23, 255);
+            this.viewMatrix.Location = new System.Drawing.Point(34, 241);
             this.viewMatrix.Name = "viewMatrix";
             this.viewMatrix.Size = new System.Drawing.Size(112, 34);
             this.viewMatrix.TabIndex = 16;
@@ -230,11 +231,23 @@
             this.dataGridView1.Visible = false;
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label9.Location = new System.Drawing.Point(162, 252);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(136, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Матрица больше 100x100";
+            this.label9.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 329);
+            this.ClientSize = new System.Drawing.Size(620, 287);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.viewMatrix);
             this.Controls.Add(this.label8);
@@ -283,6 +296,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button viewMatrix;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label9;
     }
 }
 
