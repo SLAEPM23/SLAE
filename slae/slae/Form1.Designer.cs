@@ -44,6 +44,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.viewMatrix = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,6 +64,7 @@
             this.fileName.Name = "fileName";
             this.fileName.Size = new System.Drawing.Size(380, 20);
             this.fileName.TabIndex = 1;
+            this.fileName.TextChanged += new System.EventHandler(this.fileName_TextChanged);
             // 
             // methodSolver
             // 
@@ -88,12 +92,14 @@
             // 
             // buttonSolver
             // 
-            this.buttonSolver.Location = new System.Drawing.Point(435, 290);
+            this.buttonSolver.BackColor = System.Drawing.Color.Red;
+            this.buttonSolver.Enabled = false;
+            this.buttonSolver.Location = new System.Drawing.Point(439, 243);
             this.buttonSolver.Name = "buttonSolver";
             this.buttonSolver.Size = new System.Drawing.Size(127, 34);
             this.buttonSolver.TabIndex = 4;
             this.buttonSolver.Text = "Решить";
-            this.buttonSolver.UseVisualStyleBackColor = true;
+            this.buttonSolver.UseVisualStyleBackColor = false;
             this.buttonSolver.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
@@ -137,6 +143,7 @@
             this.Relaxation.Size = new System.Drawing.Size(62, 20);
             this.Relaxation.TabIndex = 8;
             this.Relaxation.Visible = false;
+            this.Relaxation.TextChanged += new System.EventHandler(this.Relaxation_TextChanged);
             // 
             // label4
             // 
@@ -154,6 +161,7 @@
             this.IterationMax.Name = "IterationMax";
             this.IterationMax.Size = new System.Drawing.Size(62, 20);
             this.IterationMax.TabIndex = 10;
+            this.IterationMax.TextChanged += new System.EventHandler(this.IterationMax_TextChanged);
             // 
             // label5
             // 
@@ -170,6 +178,7 @@
             this.ResidualMin.Name = "ResidualMin";
             this.ResidualMin.Size = new System.Drawing.Size(62, 20);
             this.ResidualMin.TabIndex = 12;
+            this.ResidualMin.TextChanged += new System.EventHandler(this.ResidualMin_TextChanged);
             // 
             // label6
             // 
@@ -198,11 +207,36 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Формат ввода в файле:";
             // 
+            // viewMatrix
+            // 
+            this.viewMatrix.BackColor = System.Drawing.Color.Red;
+            this.viewMatrix.Enabled = false;
+            this.viewMatrix.Location = new System.Drawing.Point(34, 243);
+            this.viewMatrix.Name = "viewMatrix";
+            this.viewMatrix.Size = new System.Drawing.Size(112, 34);
+            this.viewMatrix.TabIndex = 16;
+            this.viewMatrix.Text = "Матрица";
+            this.viewMatrix.UseVisualStyleBackColor = false;
+            this.viewMatrix.Click += new System.EventHandler(this.viewMatrix_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 279);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(10, 10);
+            this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.Visible = false;
+            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 336);
+            this.ClientSize = new System.Drawing.Size(620, 287);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.viewMatrix);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -223,6 +257,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "SLAE_solver";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,6 +281,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button viewMatrix;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

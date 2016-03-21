@@ -29,6 +29,7 @@ namespace slae
             OpenFileDialog path = new OpenFileDialog();
             if (path.ShowDialog() == DialogResult.OK)
                 fileName.Text = path.FileName;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -144,6 +145,153 @@ namespace slae
                     label7.Text = "n m elem iaddr jaddr rp x0";
                     break;
             }
+        }
+
+        private void fileName_TextChanged(object sender, EventArgs e)
+        {
+            if (fileName.TextLength == 0)
+            {
+                viewMatrix.Enabled = false;
+                viewMatrix.BackColor = Color.Red;
+                buttonSolver.Enabled = false;
+                buttonSolver.BackColor = Color.Red;
+                dataGridView1.Visible = false;
+                Size = new Size(640, 330);
+            }
+            else
+                if (IterationMax.TextLength > 0
+                && ResidualMin.TextLength > 0
+                && Relaxation.TextLength > 0
+                && fileName.TextLength > 0)
+                {
+                    viewMatrix.Enabled = true;
+                    viewMatrix.BackColor = Color.Green;
+                    buttonSolver.Enabled = true;
+                    buttonSolver.BackColor = Color.Green;
+                    dataGridView1.Visible = false;
+                    Size = new Size(640, 330);
+                }
+        }
+
+        private void Relaxation_TextChanged(object sender, EventArgs e)
+        {
+            if (Relaxation.TextLength == 0)
+            {
+                buttonSolver.Enabled = false;
+                buttonSolver.BackColor = Color.Red;
+                Relaxation.BackColor = Color.Red;
+            }
+            else
+                if (IterationMax.TextLength > 0
+                && ResidualMin.TextLength > 0
+                && Relaxation.TextLength > 0
+                && fileName.TextLength > 0)
+                {
+                    buttonSolver.Enabled = true;
+                    buttonSolver.BackColor = Color.Green;
+                    Relaxation.BackColor = Color.White;
+                }
+        }
+
+        private void ResidualMin_TextChanged(object sender, EventArgs e)
+        {
+            if (ResidualMin.TextLength == 0)
+            {
+                buttonSolver.Enabled = false;
+                buttonSolver.BackColor = Color.Red;
+                ResidualMin.BackColor = Color.Red;
+            }
+            else
+                if (IterationMax.TextLength > 0
+                && ResidualMin.TextLength > 0
+                && Relaxation.TextLength > 0
+                && fileName.TextLength > 0)
+                {
+                    buttonSolver.Enabled = true;
+                    buttonSolver.BackColor = Color.Green;
+                    ResidualMin.BackColor = Color.White;
+                }
+        }
+
+        private void IterationMax_TextChanged(object sender, EventArgs e)
+        {
+            if (IterationMax.TextLength == 0)
+            {
+                buttonSolver.Enabled = false;
+                buttonSolver.BackColor = Color.Red;
+                IterationMax.BackColor = Color.Red;
+            }
+            else
+                if(IterationMax.TextLength > 0
+                &&  ResidualMin.TextLength > 0
+                &&  Relaxation.TextLength  > 0
+                && fileName.TextLength > 0)
+                {
+                    buttonSolver.Enabled = true;
+                    buttonSolver.BackColor = Color.Green;
+                    IterationMax.BackColor = Color.White;
+                }
+        }
+
+        private void viewMatrix_Click(object sender, EventArgs e)
+        {
+            if (viewMatrix.BackColor == Color.Green)
+            {
+                IMatrix A;
+                Vector b;
+                Vector x0;
+
+                FileManager fileManager = new FileManager(fileName.Text);
+
+                switch (matrixFormat.SelectedIndex)
+                {
+                    case 0: fileManager.ReadFromFileDense(out A, out b, out x0);
+                        break;
+                    case 1: fileManager.ReadFromFile(out A, out b, out x0);
+                        break;
+                    case 2: fileManager.ReadFromFileProfile(out A, out b, out x0);
+                        break;
+                    case 3: fileManager.ReadFromFileCoordinate(out A, out b, out x0);
+                        break;
+                    default: throw new Exception("Формат не выбран");
+                }
+
+                DataTable table = new DataTable();
+                for (int i = 0; i < A.Size; i++)
+                {
+                    DataColumn col = new DataColumn((i + 1).ToString());
+                    table.Columns.Add(col);
+                }
+                for (int i = 0; i < A.Size; i++)
+                {
+                    DataRow row = table.NewRow();
+                    
+                    for (int j = 0; j < A.Size; j++)
+                    {
+                        row[j] = A[i, j];
+                    }
+                    table.Rows.Add(row);
+                }
+                dataGridView1.DataSource = table;
+                for (int i = 0; i < A.Size; i++)
+                    dataGridView1.Rows[i].HeaderCell.Value = (i+1).ToString();
+                dataGridView1.Visible = true;
+                this.Size = new Size(640, 540);
+                dataGridView1.Width = 620;
+                dataGridView1.Height = 210;
+                viewMatrix.BackColor = Color.White;
+            }
+            else
+            {
+                dataGridView1.Visible = false;
+                this.Size = new Size(640, 330);
+                viewMatrix.BackColor = Color.Green;
+            }
+        }
+
+        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+        //        dataGridView1.Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();  
         }
     }
 }
