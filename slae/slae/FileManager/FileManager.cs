@@ -169,11 +169,11 @@ namespace slae
                 double[] rightPart = new double[n];
                 double[] x0 = new double[n];
                 long offset = 2;
-                for (int i = 0; i < m; i++)
+                for (int i = 0; i < m; i++, offset++)
                     elem[i] = double.Parse(st[offset]);
-                for (int i = 0; i < m; i++)
+                for (int i = 0; i < m; i++, offset++)
                     iaddr[i] = int.Parse(st[offset]);
-                for (int i = 0; i < m; i++)
+                for (int i = 0; i < m; i++, offset++)
                     jaddr[i] = int.Parse(st[offset]);
                 
 
