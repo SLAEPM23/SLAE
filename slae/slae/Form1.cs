@@ -284,9 +284,9 @@ namespace slae
                     for (int i = 0; i < A.Size; i++)
                         dataGridView1.Rows[i].HeaderCell.Value = (i + 1).ToString();
                     dataGridView1.Visible = true;
-                    this.Size = new Size(640, 540);
+                    this.Size = new Size(640, 640);
                     dataGridView1.Width = 620;
-                    dataGridView1.Height = 210;
+                    dataGridView1.Height = 280;
                     viewMatrix.BackColor = Color.White;
                 }
                 else
