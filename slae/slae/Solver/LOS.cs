@@ -44,7 +44,10 @@ namespace slae
                 p = VectorAssistant.multScalar(betta, p);
                 p.Add(MatrixAssistant.multMatrixVector(A,r),1);
                 residual_prev = residual;
-                residual -= alpha*alpha*p_scal;
+                residual -= alpha*alpha*p_scal;  // очень смущает, - как раз тут вылезает всегда на последней итериции
+
+               if (residual < 0) residual = residual_prev; //ну не знаю что сделать (пока что), пусть будет так
+
                 //Debugger.DebugSolver(iteration, residual, result);
             }
             return result;
