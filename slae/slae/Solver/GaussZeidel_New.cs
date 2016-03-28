@@ -48,7 +48,7 @@ namespace slae
                     for (int ii = 0; ii < Lx.Size; ii++)
                         sum += Lx[ii];
                     difference[i] -= sum;
-                    result[i] = difference[i]/A.Diagonal[i];
+                    result[i] = relaxation*difference[i]/A.Diagonal[i];
                 }
                 difference.Equalize(b);
                 difference.Add(MatrixAssistant.multMatrixVector(A, result), -1);
