@@ -23,7 +23,7 @@ namespace slae
             au = new Vector(_au);
         }
 
-        public void Run(Interface.ProcessElement processor)
+        public void Run(ProcessElement processor)
         {
             for (int i = 0; i < size; i++)
             {
@@ -35,6 +35,15 @@ namespace slae
                     processor(ja[jaddr] , i, au[jaddr]);
                 }
             }
+        }
+
+        public void RunRow(ProcessElement processor, int Row)
+        {
+            for (int jaddr = ia[Row]; jaddr < ia[Row + 1]; jaddr++)
+                {
+                    // processor(i, ja[jaddr], al[jaddr]);
+                    processor(Row, ja[jaddr], al[jaddr]);
+                }
         }
 
         //public double this[int i, int j]
@@ -139,6 +148,12 @@ namespace slae
                 for (int j = 0; j < size; j++)
                     processor(i, j, a[i, j]);
         }
+
+        public void RunRow(ProcessElement processor, int Row)
+        {
+            for (int j = 0; j < Row; j++)
+                processor(Row, j, a[Row, j]);
+        }
     }
 
     class ProfileMatrix : Interface.IMatrix
@@ -206,6 +221,16 @@ namespace slae
             }
         }
 
+        public void RunRow(ProcessElement processor, int Row)
+        {
+            int diff = 0;
+            for (int jaddr = ial[Row]; jaddr < ial[Row + 1]; jaddr++)
+            {
+                processor(Row, Row - (ial[Row + 1] - ial[Row]) + diff, al[jaddr]);
+                diff++;
+            }
+        }
+
         public IVector Diagonal
         {
             get
@@ -252,6 +277,15 @@ namespace slae
                 processor(iaddr[index], jaddr[index], elem[index]);
             }
         }
+
+         public void RunRow(ProcessElement processor, int Row)
+         {
+             for (int index = 0; index < elem.Length; index++)
+             {
+                 if (iaddr[index] == Row && jaddr[index] < Row)
+                     processor(iaddr[index], jaddr[index], elem[index]);
+             }
+         }
 
         public IVector Diagonal
         {

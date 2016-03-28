@@ -10,6 +10,7 @@ namespace slae.Interface
     public interface IMatrix
     {
         void Run(ProcessElement processor);
+        void RunRow(ProcessElement processor, int row);
         IVector Diagonal { get; }
         int Size { get; }
         double this[int i, int j]

@@ -69,7 +69,7 @@ namespace slae
                                                    Convert.ToDouble(ResidualMin.Text));
                     break;
                 case 2:
-                    solver = new GaussZeidel(Convert.ToDouble(Relaxation.Text),
+                    solver = new GaussZeidel_New(Convert.ToDouble(Relaxation.Text),
                                         Convert.ToInt16(IterationMax.Text),
                                         Convert.ToDouble(ResidualMin.Text));
                     break;
