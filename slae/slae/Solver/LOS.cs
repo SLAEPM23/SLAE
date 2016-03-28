@@ -42,11 +42,19 @@ namespace slae
                 z.Add(r, 1);
                 p = VectorAssistant.multScalar(betta, p);
                 p.Add(MatrixAssistant.multMatrixVector(A, r), 1);
+                
+                    residual -= alpha * alpha * p_scal;
+                if (residual < 0)           //она всё равно отрицательная
+                    {
+                        residual += alpha * alpha * p_scal;
+                        return result;
+                    }
+                    if (alpha * alpha * p_scal < residual * 10E-5)
+                        return result;
+                    p_scal = VectorAssistant.multVector(p, p);
+                    
 
-                residual -= alpha * alpha * p_scal;
-                if (alpha * alpha * p_scal < residual * 10E-5)
-                    return result;
-                p_scal = VectorAssistant.multVector(p, p);
+                Debugger.DebugSolver(iteration, residual, result);
             }
             return result;
         }
