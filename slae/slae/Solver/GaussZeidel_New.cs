@@ -55,7 +55,7 @@ namespace slae
                 residual2 = difference.Norm;
                 residual_prev = residual;
                 residual = residual2 / residual1;
-                //Debugger.DebugSolver(iteration, residual, result);
+                Debugger.DebugSolver(iteration, residual, result);
                 x_prev.Equalize(result);
             }
 

@@ -31,6 +31,7 @@ namespace slae
             p.Equalize(MatrixAssistant.multMatrixVector(A, z));
             p_scal = VectorAssistant.multVector(p, p);
             residual = VectorAssistant.multVector(r, r);
+            residual = Math.Sqrt(VectorAssistant.multVector(r, r)) / b.Norm;
 
             for (iteration = 1; iteration <= maxIteration && residual > minResidual; iteration++)
             {
@@ -43,7 +44,7 @@ namespace slae
                 p = VectorAssistant.multScalar(betta, p);
                 p.Add(MatrixAssistant.multMatrixVector(A, r), 1);
                 
-                    residual -= alpha * alpha * p_scal;
+                  /*  residual -= alpha * alpha * p_scal;
                 if (residual < 0)           //она всё равно отрицательная
                     {
                         residual += alpha * alpha * p_scal;
@@ -51,8 +52,9 @@ namespace slae
                     }
                     if (alpha * alpha * p_scal < residual * 10E-5)
                         return result;
+                   */
                     p_scal = VectorAssistant.multVector(p, p);
-                    
+                    residual = Math.Sqrt(VectorAssistant.multVector(r, r)) / b.Norm;
 
                 Debugger.DebugSolver(iteration, residual, result);
             }

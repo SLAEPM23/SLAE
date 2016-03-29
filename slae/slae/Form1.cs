@@ -99,7 +99,7 @@ namespace slae
                 MessageBox.Show("Результаты решения в файле /SLAE/slae/slae/bin/Debug/result.txt");
                 File.WriteAllText("result.txt", FinalResult);
             }
-
+            File.WriteAllText("result.txt", FinalResult);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
